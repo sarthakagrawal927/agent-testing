@@ -1,0 +1,32 @@
+{
+  "status": "completed-readiness-screen",
+  "date": "2026-09-20",
+  "target": "dedicated iPhone 16 Pro simulator on iOS 26.5",
+  "results": [
+    {
+      "tool": "ios-simulator-mcp",
+      "version": "2.1.0",
+      "server_tools": 17,
+      "device_discovery": "passed",
+      "accessibility_description": "passed",
+      "description_characters": 6940,
+      "prerequisite": "fb-idb 1.1.7 in an isolated experiment virtual environment"
+    },
+    {
+      "tool": "Mobile MCP",
+      "version": "1.0.4",
+      "server_tools": 32,
+      "device_discovery": "passed",
+      "accessibility_listing": "passed",
+      "listed_elements": 27,
+      "device_agent": "0.0.26 installed for the probe and removed afterward"
+    },
+    {
+      "tool": "idb",
+      "version": "fb-idb 1.1.7",
+      "device_discovery": "passed through ios-simulator-mcp",
+      "accessibility_description": "passed through ios-simulator-mcp"
+    }
+  ],
+  "boundary": "This proves local readiness, device discovery and accessibility inspection. It is not a saved Vaultwealth journey, reliability benchmark or defect-detection qualification."
+}

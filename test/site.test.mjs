@@ -34,7 +34,8 @@ test('public map ships agent and missing-route surfaces', async () => {
   assert.match(llms, /The workflow and verifier must be separate/);
   assert.match(missing, /Route not found/);
   assert.match(headers, /Content-Security-Policy/);
-  assert.match(toolsPage, /54 tools, labelled honestly/);
+  assert.match(toolsPage, /79 tools, each with a verdict/);
+  assert.doesNotMatch(toolsPage, /Not run here/);
   assert.match(experimentsPage, /What was actually run/);
   assert.doesNotMatch(toolsPage, /<script\b/i);
   assert.doesNotMatch(experimentsPage, /<script\b/i);
@@ -53,10 +54,10 @@ test('catalogue has broad coverage without presenting research as benchmark evid
   const ids = new Set(tools.tools.map((tool) => tool.id));
   const categories = new Set(tools.tools.map((tool) => tool.category));
 
-  assert.ok(tools.tools.length >= 50);
+  assert.ok(tools.tools.length >= 75);
   assert.equal(ids.size, tools.tools.length);
-  assert.equal(categories.size, 6);
-  assert.equal(experiments.experiments.length, 8);
+  assert.equal(categories.size, 7);
+  assert.equal(experiments.experiments.length, 10);
   assert.equal(tools.status, 'completed-experiment');
   assert.equal(experiments.status, 'completed-experiment');
   assert.ok(versions.pins.length >= 15);
@@ -66,8 +67,32 @@ test('catalogue has broad coverage without presenting research as benchmark evid
   for (const tool of tools.tools) {
     assert.match(tool.url, /^https:\/\//);
     assert.match(toolsPage, new RegExp(`id="${tool.id}"`));
-    if (tool.evidence === 'researched-only') assert.equal(tool.version, null);
+    assert.ok(tool.version || tool.disposition || tools.category_boundaries[tool.category]);
   }
+});
+
+test('expanded driver screen records verified results and a fault oracle', async () => {
+  const evidence = JSON.parse(await readFile(new URL('../adapters/vaultwealth/runtime/evidence/expanded-web-screening-2026-09-20.json', import.meta.url), 'utf8'));
+
+  assert.equal(evidence.status, 'completed-screening');
+  assert.equal(evidence.results.length, 5);
+  for (const result of evidence.results) {
+    assert.equal(result.clean_verified, '5/5');
+    assert.equal(result.fault_detected, true);
+    assert.ok(result.workflow_median_ms > 0);
+    assert.ok(result.workflow_observed_p95_ms >= result.workflow_median_ms);
+  }
+  assert.equal(evidence.setup_dispositions.length, 2);
+});
+
+test('expanded native screen records successful discovery and cleans up the temporary agent', async () => {
+  const evidence = JSON.parse(await readFile(new URL('../adapters/vaultwealth/runtime/evidence/expanded-native-screening-2026-09-20.json', import.meta.url), 'utf8'));
+
+  assert.equal(evidence.status, 'completed-readiness-screen');
+  assert.equal(evidence.results.length, 3);
+  assert.equal(evidence.results[0].accessibility_description, 'passed');
+  assert.equal(evidence.results[1].accessibility_listing, 'passed');
+  assert.match(evidence.results[1].device_agent, /removed afterward/);
 });
 
 test('layout has responsive, focus and contrast accommodations', async () => {

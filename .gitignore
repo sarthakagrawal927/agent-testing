@@ -23,4 +23,5 @@ adapters/*/runtime/tools/bonsai/models/
 adapters/*/runtime/tools/bonsai/runtime/
 adapters/*/runtime/tools/browser-use-py312/
 adapters/*/runtime/tools/browser-use-venv/
+adapters/*/runtime/tools/idb-venv/
 adapters/*/runtime/tools/jev-ultrafast/

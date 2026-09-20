@@ -14,7 +14,7 @@ Access: The source repository is public and can be cloned without authorization.
 Last experiment: 2026-09-20
 Catalogue reviewed: 2026-09-20
 Status: completed experiment; retained without an active expansion roadmap.
-Coverage: 54 tools in six categories. Evidence states are benchmarked, screened, setup-blocked, and researched-only.
+Coverage: 79 tools in seven categories. Eleven tools were repeatedly benchmarked, ten received bounded screens, four have dated setup blockers, and the remaining source-reviewed entries have explicit scope or fit boundaries.
 
 ## Start
 
@@ -35,6 +35,7 @@ The workflow and verifier must be separate. A successful driver exit is not proo
 ## Current screening guidance
 
 - Repeat web changes: saved Playwright workflows.
+- Compare deterministic web drivers: Puppeteer was the fastest added screen at 2.081 s median, but did not meet the 2x adoption gate; Selenium, WebdriverIO, Nightwatch and Taiko also completed 5/5 clean runs and detected stale search.
 - Explore supported web behavior: Jev plus an independent verifier.
 - Replay a previously resolved semantic web action: Stagehand cache remains promising but unqualified as a replacement.
 - Repeat iOS changes: saved Maestro flows.
@@ -47,6 +48,13 @@ No overall replacement has qualified. Adopt a candidate only after it is at leas
 - Playwright 1.62.1
 - agent-browser 0.38.1
 - @playwright/cli 0.1.21
+- Puppeteer Core 24.43.1
+- Selenium WebDriver 4.49.0 with ChromeDriver 151.0.5
+- WebdriverIO 9.31.9
+- Nightwatch 3.16.0
+- Taiko 1.5.0
+- TestCafe 3.7.6 (bounded setup blocker)
+- Cypress 16.1.0 package (application binary absent)
 - Stagehand 3.4.0
 - Browser Use 0.13.10
 - chrome-devtools-mcp 1.9.0
@@ -54,12 +62,15 @@ No overall replacement has qualified. Adopt a candidate only after it is at leas
 - AXe 1.8.0
 - Maestro 2.6.1 with Java 21
 - XcodeBuildMCP 2.7.0
+- ios-simulator-mcp 2.1.0
+- Mobile MCP 1.0.4 with temporary device agent 0.0.26
+- fb-idb 1.1.7 in an isolated experiment environment
 - Chromium 151.0.7922.34
 - Codex 0.155.1 using gpt-6-astra at medium reasoning
 - Bonsai model revision 6ed5e12bf84b7a63069882c91dd9e9218647d17b
 - Prism llama.cpp 0.2.0-dev build 10709 at commit 9a9394a895b96003ca842a6041cb28ac49a108f7
 
-See versions.json for hashes and environment pins. Unrun catalogue entries deliberately have no version claim.
+See versions.json for hashes and observed environment pins. Source-reviewed entries state an applicability boundary instead of inventing a runtime result.
 
 Detailed guide: https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md
 Full report: https://github.com/sarthakagrawal927/agent-testing/blob/main/adapters/vaultwealth/runtime/REPORT.md

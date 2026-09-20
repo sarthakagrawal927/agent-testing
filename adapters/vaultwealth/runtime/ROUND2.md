@@ -38,6 +38,11 @@ separately. At these sample sizes, tail estimates are preliminary.
 | Stagehand + Bonsai, uncached semantic actions    | 26.951 / 31.401 s; 5/5                 | 3 local calls; $0                    | Detected in 24.252 s  |
 | Stagehand cached replay after 25.544 s authoring | 2.201 / 2.233 s; 4/4                   | 0 model calls; $0                    | Detected in 6.140 s   |
 | Browser Use + Bonsai                             | 90.730 / 93.623 s among successes; 4/5 | 8 local calls on successes; $0       | Detected in 129.518 s |
+| Puppeteer Core 24.43.1                           | 2.081 / 2.146 s; 5/5                   | 0 calls; $0                          | Detected              |
+| WebdriverIO 9.31.9                               | 2.958 / 3.087 s; 5/5                   | 0 calls; $0                          | Detected              |
+| Selenium WebDriver 4.49.0                        | 3.633 / 3.651 s; 5/5                   | 0 calls; $0                          | Detected              |
+| Nightwatch 3.16.0                                | 5.425 / 5.700 s; 5/5                   | 0 calls; $0                          | Detected              |
+| Taiko 1.5.0                                      | 23.850 / 23.921 s; 5/5                 | 0 calls; $0                          | Detected              |
 
 The Browser Use failure was a 30.543 s first-decision model timeout; no search
 was issued. Successful runs used three input decisions, three explicit wait

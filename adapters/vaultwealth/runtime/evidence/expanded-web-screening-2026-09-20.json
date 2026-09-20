@@ -1,0 +1,74 @@
+{
+  "status": "completed-screening",
+  "date": "2026-09-20",
+  "application": "Vaultwealth seeded local web fixture",
+  "journey": "dynamic search: VOO, QQQ, then an empty result",
+  "browser": "Chromium 151.0.7922.34 at 1280x800",
+  "runs_per_candidate": 5,
+  "oracle": "separate backend request/served-query check plus final UI state",
+  "fault": "stale-search",
+  "results": [
+    {
+      "tool": "Puppeteer Core",
+      "version": "24.43.1",
+      "clean_verified": "5/5",
+      "workflow_median_ms": 2081.148,
+      "workflow_observed_p95_ms": 2145.519,
+      "total_median_ms": 2418.289,
+      "fault_detected": true
+    },
+    {
+      "tool": "Selenium WebDriver",
+      "version": "4.49.0",
+      "driver": "ChromeDriver 151.0.5",
+      "clean_verified": "5/5",
+      "workflow_median_ms": 3632.742,
+      "workflow_observed_p95_ms": 3650.501,
+      "total_median_ms": 3962.85,
+      "fault_detected": true
+    },
+    {
+      "tool": "WebdriverIO",
+      "version": "9.31.9",
+      "clean_verified": "5/5",
+      "workflow_median_ms": 2958.072,
+      "workflow_observed_p95_ms": 3087.302,
+      "total_median_ms": 3296.297,
+      "fault_detected": true
+    },
+    {
+      "tool": "Nightwatch",
+      "version": "3.16.0",
+      "clean_verified": "5/5",
+      "workflow_median_ms": 5425.102,
+      "workflow_observed_p95_ms": 5700.261,
+      "total_median_ms": 5756.9,
+      "fault_detected": true
+    },
+    {
+      "tool": "Taiko",
+      "version": "1.5.0",
+      "clean_verified": "5/5",
+      "workflow_median_ms": 23850.042,
+      "workflow_observed_p95_ms": 23921.269,
+      "total_median_ms": 24410.391,
+      "fault_detected": true,
+      "note": "Runs used isolated browser launches because Taiko closeBrowser also closed the shared Chromium process."
+    }
+  ],
+  "setup_dispositions": [
+    {
+      "tool": "TestCafe",
+      "version": "3.7.6",
+      "result": "setup-blocked",
+      "detail": "The local TestCafe proxy run did not reach a bounded test result before the 60 second harness timeout."
+    },
+    {
+      "tool": "Cypress",
+      "version": "16.1.0",
+      "result": "setup-blocked",
+      "detail": "The npm package is pinned, but the isolated experiment has no Cypress 16.1.0 application binary installed."
+    }
+  ],
+  "decision": "Keep Playwright as the saved web baseline. Puppeteer was the fastest added screen but did not meet the 2x adoption gate."
+}

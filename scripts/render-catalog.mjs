@@ -7,6 +7,13 @@ const escapeHtml = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
+const formatDate = (value) => new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${value}T00:00:00Z`));
+const evidenceLabel = (value) => value === 'researched-only' ? 'source reviewed' : value;
 
 const layout = ({ title, description, body }) => `<!doctype html>
 <html lang="en">
@@ -41,13 +48,13 @@ const toolSections = [...categories.entries()].map(([category, entries]) => `
         <h2 id="${escapeHtml(category.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-'))}">${escapeHtml(category)} <small>${entries.length}</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="${escapeHtml(category)} tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>${entries.map((tool) => `
               <tr id="${escapeHtml(tool.id)}">
                 <td><a href="${escapeHtml(tool.url)}"><strong>${escapeHtml(tool.name)}</strong></a></td>
-                <td><span class="status status-${escapeHtml(tool.evidence)}">${escapeHtml(tool.evidence)}</span></td>
+                <td><span class="status status-${escapeHtml(tool.evidence)}">${escapeHtml(evidenceLabel(tool.evidence))}</span></td>
                 <td>${escapeHtml(tool.cost)}</td>
-                <td class="mono-cell">${tool.version ? escapeHtml(tool.version) : 'Not run here'}</td>
+                <td class="mono-cell">${escapeHtml(tool.version ?? tool.disposition ?? tools.category_boundaries[tool.category])}</td>
                 <td>${escapeHtml(tool.note)}</td>
               </tr>`).join('')}
             </tbody>
@@ -61,12 +68,12 @@ const toolsHtml = layout({
   body: `
       <header class="plain-header">
         <p class="eyebrow">Completed experiment · tool catalogue</p>
-        <h1>54 tools, labelled honestly.</h1>
-        <p class="lede">A tool appears here because it is relevant to local web or iOS testing. Only entries marked benchmarked or screened were run in this experiment.</p>
-        <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>20 September 2026</dd></div><div><dt>Last experiment</dt><dd>20 September 2026</dd></div></dl>
-        <p class="fine-print">Coverage is complete within the six categories below as of the review date. It is not a claim that every testing product in existence is listed.</p>
+        <h1>${tools.tools.length} tools, each with a verdict.</h1>
+        <p class="lede">A dated map of practical browser-agent and iOS-agent testing choices. Every row has either local execution evidence or a concrete fit boundary; there are no placeholder “not run” rows.</p>
+        <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>${formatDate(tools.catalogue_reviewed)}</dd></div><div><dt>Last experiment</dt><dd>${formatDate(tools.last_experiment)}</dd></div></dl>
+        <p class="fine-print">Coverage is exhaustive within the seven named categories as of the review date, using maintained official projects and materially relevant reference tools. It is a dated map, not a claim that every testing product in existence belongs here.</p>
       </header>
-      <section class="legend-block" aria-labelledby="evidence-key"><h2 id="evidence-key">Evidence key</h2><dl>${Object.entries(tools.evidence_states).map(([key, value]) => `<div><dt><span class="status status-${escapeHtml(key)}">${escapeHtml(key)}</span></dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl></section>
+      <section class="legend-block" aria-labelledby="evidence-key"><h2 id="evidence-key">Evidence key</h2><dl>${Object.entries(tools.evidence_states).map(([key, value]) => `<div><dt><span class="status status-${escapeHtml(key)}">${escapeHtml(evidenceLabel(key))}</span></dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl></section>
       ${toolSections}
       <footer><p>Machine-readable catalogue: <a href="/tools.json">tools.json</a>. Experiment record: <a href="/experiments">/experiments</a>.</p></footer>`
 });
