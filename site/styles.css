@@ -159,6 +159,14 @@ footer p { margin-bottom: 4px; }
 .experiment h2 { font-size: 1.8rem; }
 .experiment p, .experiment li { max-width: 900px; }
 .experiment li { margin-bottom: 6px; }
+.coverage-evidence { margin-bottom: 54px; }
+.coverage-evidence div { min-height: 96px; }
+.result-table { min-width: 1180px; }
+.result-table th:nth-child(1) { width: 7%; }
+.result-table th:nth-child(2) { width: 10%; }
+.result-table th:nth-child(3) { width: 18%; }
+.result-table th:nth-child(4), .result-table th:nth-child(5), .result-table th:nth-child(6) { width: 8%; }
+.result-table td small { display: block; margin-top: 3px; color: var(--muted); font-size: 0.72rem; line-height: 1.4; }
 
 @media (max-width: 700px) {
   body { background: var(--paper); font-size: 16px; }

@@ -23,6 +23,325 @@
         <dl class="dates"><div><dt>Last experiment</dt><dd>20 September 2026</dd></div><div><dt>Current decision</dt><dd>Keep Playwright + Maestro</dd></div></dl>
       </header>
       <section class="plain-callout"><h2>Bottom line</h2><p>Keep Playwright and Maestro as regression baselines. Use adaptive tools for exploration with an independent verifier.</p><p>Promising results remain screening evidence. None completed the planned 20 warm and three cold qualification set across every journey.</p></section>
+      <section aria-labelledby="coverage"><h2 id="coverage">Coverage in numbers</h2><div class="evidence coverage-evidence"><div><span>Tools mapped</span><strong>79</strong></div><div><span>Tools executed</span><strong>21</strong></div><div><span>Measured journey arms</span><strong>26</strong></div><div><span>Verified journey attempts</span><strong>118/129</strong></div><div><span>Seeded defect types</span><strong>5</strong></div><div><span>Accepted paid API spend</span><strong>$0.00480</strong></div></div><p class="fine-print">Executed means benchmarked or bounded-screened locally. The other 54 catalogue entries retain source-backed fit boundaries; they are not assigned synthetic scores.</p></section>
+      <section class="catalog-section" aria-labelledby="journey-matrix"><h2 id="journey-matrix">Measured journey matrix <small>26 arms</small></h2><p>Median and observed p95 include the timing basis shown under each mode. At these sample sizes, observed p95 is usually the maximum. A dash means the report did not establish that number.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Measured web and iOS journey comparison"><table class="catalog-table result-table"><thead><tr><th>Platform</th><th>Journey</th><th>Mode</th><th>Median</th><th>Observed p95</th><th>Verified</th><th>Model / cost</th><th>Seeded fault</th></tr></thead><tbody>
+              <tr>
+                <td>Web</td>
+                <td>Login</td>
+                <td><strong>Playwright saved</strong><small>verified passes</small></td>
+                <td class="mono-cell">1.178 s</td>
+                <td class="mono-cell">1.400 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>clipped control detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Login</td>
+                <td><strong>agent-browser direct</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.714 s</td>
+                <td class="mono-cell">3.846 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>clipped control detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Login</td>
+                <td><strong>agent-browser batch</strong><small>verified passes</small></td>
+                <td class="mono-cell">1.323 s</td>
+                <td class="mono-cell">1.734 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>clipped control detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Edit + reload</td>
+                <td><strong>Playwright saved</strong><small>verified passes</small></td>
+                <td class="mono-cell">1.898 s</td>
+                <td class="mono-cell">1.950 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>3/3 write faults detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Edit + reload</td>
+                <td><strong>agent-browser direct</strong><small>verified passes</small></td>
+                <td class="mono-cell">1.762 s</td>
+                <td class="mono-cell">1.795 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>3/3 write faults detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Edit + reload</td>
+                <td><strong>agent-browser batch</strong><small>no verified completion</small></td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">0/5</td>
+                <td>0 calls · $0</td>
+                <td>not eligible after clean failure</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Playwright saved</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.768 s</td>
+                <td class="mono-cell">2.796 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>agent-browser direct</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.826 s</td>
+                <td class="mono-cell">2.833 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>agent-browser batch</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.649 s</td>
+                <td class="mono-cell">2.836 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Puppeteer Core</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.081 s</td>
+                <td class="mono-cell">2.146 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>WebdriverIO</strong><small>verified passes</small></td>
+                <td class="mono-cell">2.958 s</td>
+                <td class="mono-cell">3.087 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Selenium WebDriver</strong><small>verified passes</small></td>
+                <td class="mono-cell">3.633 s</td>
+                <td class="mono-cell">3.651 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Nightwatch</strong><small>verified passes</small></td>
+                <td class="mono-cell">5.425 s</td>
+                <td class="mono-cell">5.700 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Taiko</strong><small>verified passes</small></td>
+                <td class="mono-cell">23.850 s</td>
+                <td class="mono-cell">23.921 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Stagehand cached</strong><small>verified replays</small></td>
+                <td class="mono-cell">2.201 s</td>
+                <td class="mono-cell">2.233 s</td>
+                <td class="mono-cell">4/4</td>
+                <td>0 replay calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Stagehand uncached</strong><small>verified passes</small></td>
+                <td class="mono-cell">26.951 s</td>
+                <td class="mono-cell">31.401 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>3 local calls · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Jev + Bonsai</strong><small>verified passes</small></td>
+                <td class="mono-cell">11.101 s</td>
+                <td class="mono-cell">11.391 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>7 paid selector + 3 local calls · ~$0.00063/run</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Search</td>
+                <td><strong>Browser Use + Bonsai</strong><small>successful verified passes</small></td>
+                <td class="mono-cell">90.730 s</td>
+                <td class="mono-cell">93.623 s</td>
+                <td class="mono-cell">4/5</td>
+                <td>8 local calls on successes · $0</td>
+                <td>stale result detected</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Login</td>
+                <td><strong>Playwright CLI</strong><small>verified passes; p95 unavailable</small></td>
+                <td class="mono-cell">3.235 s</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>no fault sample</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Edit + reload</td>
+                <td><strong>Playwright CLI</strong><small>verified passes; p95 unavailable</small></td>
+                <td class="mono-cell">3.076 s</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>no fault sample</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Adaptive login</td>
+                <td><strong>Codex stepwise</strong><small>verified passes</small></td>
+                <td class="mono-cell">155.971 s</td>
+                <td class="mono-cell">225.686 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>918,042 median input tokens</td>
+                <td>clipped control detected separately</td>
+              </tr>
+              <tr>
+                <td>Web</td>
+                <td>Adaptive login</td>
+                <td><strong>Codex batched</strong><small>all attempts; 2/5 functional</small></td>
+                <td class="mono-cell">123.684 s</td>
+                <td class="mono-cell">139.657 s</td>
+                <td class="mono-cell">0/5</td>
+                <td>398,585 median input tokens</td>
+                <td>clipped calibration noticed; unqualified</td>
+              </tr>
+              <tr>
+                <td>iOS</td>
+                <td>Login</td>
+                <td><strong>Maestro saved flow</strong><small>verified warm passes</small></td>
+                <td class="mono-cell">32.964 s</td>
+                <td class="mono-cell">34.775 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>clipped control detected</td>
+              </tr>
+              <tr>
+                <td>iOS</td>
+                <td>Login</td>
+                <td><strong>AXe batch</strong><small>verified warm passes</small></td>
+                <td class="mono-cell">12.612 s</td>
+                <td class="mono-cell">12.892 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>clipped control detected</td>
+              </tr>
+              <tr>
+                <td>iOS</td>
+                <td>Search</td>
+                <td><strong>Maestro saved flow</strong><small>verified warm passes</small></td>
+                <td class="mono-cell">34.673 s</td>
+                <td class="mono-cell">41.146 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>no fault sample</td>
+              </tr>
+              <tr>
+                <td>iOS</td>
+                <td>Search</td>
+                <td><strong>AXe batch, one-char typing</strong><small>verified warm passes</small></td>
+                <td class="mono-cell">15.279 s</td>
+                <td class="mono-cell">15.317 s</td>
+                <td class="mono-cell">5/5</td>
+                <td>0 calls · $0</td>
+                <td>no fault sample</td>
+              </tr></tbody></table></div></section>
+      <section class="catalog-section" aria-labelledby="probe-matrix"><h2 id="probe-matrix">Other measured probes <small>7</small></h2><p>These numbers are useful, but they are not comparable end-to-end application journeys.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Measured readiness diagnostic and local model probes"><table class="catalog-table result-table"><thead><tr><th>Probe</th><th>Median</th><th>Observed p95</th><th>Passes</th><th>Numeric detail</th><th>Boundary</th></tr></thead><tbody>
+              <tr>
+                <td><strong>Bonsai text helper · budget-only</strong></td>
+                <td class="mono-cell">4.907 s</td>
+                <td class="mono-cell">8.943 s</td>
+                <td class="mono-cell">25/25</td>
+                <td>9.252 GB sampled RSS · 4,760 prompt / 2,525 output tokens</td>
+                <td>Synthetic text-helper requests</td>
+              </tr>
+              <tr>
+                <td><strong>Bonsai text helper · no-thinking</strong></td>
+                <td class="mono-cell">1.082 s</td>
+                <td class="mono-cell">1.193 s</td>
+                <td class="mono-cell">25/25</td>
+                <td>7.305 GB sampled RSS · 3,860 prompt / 215 output tokens</td>
+                <td>Synthetic text-helper requests</td>
+              </tr>
+              <tr>
+                <td><strong>Chrome DevTools MCP diagnostic bundle</strong></td>
+                <td class="mono-cell">0.826 s</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">5/5</td>
+                <td>Lighthouse snapshot 1.243 s</td>
+                <td>Diagnostic collection, not a journey</td>
+              </tr>
+              <tr>
+                <td><strong>XcodeBuildMCP cash-field action</strong></td>
+                <td class="mono-cell">3.834 s</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">5/5</td>
+                <td>1.343 s semantic observation median · ~35 s setup</td>
+                <td>No save/relaunch qualification</td>
+              </tr>
+              <tr>
+                <td><strong>AXe app-process relaunch readiness</strong></td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">0/3 standalone</td>
+                <td>Launch 1.52–1.64 s · Maestro-assisted tree 6.12–6.23 s</td>
+                <td>Startup diagnostic, not cold journey</td>
+              </tr>
+              <tr>
+                <td><strong>ios-simulator-mcp readiness</strong></td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">passed</td>
+                <td>17 tools · 6,940-character accessibility description</td>
+                <td>Readiness only</td>
+              </tr>
+              <tr>
+                <td><strong>Mobile MCP readiness</strong></td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">—</td>
+                <td class="mono-cell">passed</td>
+                <td>32 tools · 27 elements listed</td>
+                <td>Readiness only; temporary agent removed</td>
+              </tr></tbody></table></div></section>
       <section aria-labelledby="run-it"><h2 id="run-it">Clone and replay</h2><pre><code>gh repo clone sarthakagrawal927/agent-testing
 cd agent-testing
 npm test

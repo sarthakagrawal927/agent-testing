@@ -15,6 +15,7 @@ Last experiment: 2026-09-20
 Catalogue reviewed: 2026-09-20
 Status: completed experiment; retained without an active expansion roadmap.
 Coverage: 79 tools in seven categories. Eleven tools were repeatedly benchmarked, ten received bounded screens, four have dated setup blockers, and the remaining source-reviewed entries have explicit scope or fit boundaries.
+Quantitative matrix: 26 measured web/iOS journey arms with 118 verified completions across 129 attempts, plus seven readiness, diagnostic and local-model probes. Five seeded defect types. Estimated accepted paid API spend across the Jev evidence: $0.00479976.
 
 ## Start
 
@@ -42,6 +43,8 @@ The workflow and verifier must be separate. A successful driver exit is not proo
 - Targeted iOS inspection/action: AXe or XcodeBuildMCP, without assuming standalone reliability.
 
 No overall replacement has qualified. Adopt a candidate only after it is at least 2x faster, or uses at least 50% less model without slower execution, with no missed seeded defects and no observed reliability regression.
+
+The complete numeric matrix is in experiments.json under journey_comparisons and probe_comparisons. Every journey row includes verified_passes and attempts; null timing values mean the retained report did not establish that number.
 
 ## Exact observed versions
 

@@ -26,6 +26,7 @@ Completed experiment for reproducible, local-first web and native app-agent benc
 
 ## Timeline
 
+- 2026-09-20 — published the complete quantitative matrix: 26 measured journey arms, seven additional probes, honest pass denominators, model/cost fields, seeded-fault outcomes and six headline coverage totals.
 - 2026-09-20 — completed evidence matrix expanded to 79 sourced tools in seven categories. Puppeteer, Selenium, WebdriverIO, Nightwatch and Taiko each completed five verified clean search runs and detected the stale-search fault; TestCafe and Cypress retain explicit setup dispositions.
 - 2026-09-20 — ios-simulator-mcp 2.1.0 and Mobile MCP 1.0.4 completed bounded simulator discovery and accessibility screens; isolated fb-idb 1.1.7 supplied the former's accessibility backend, and Mobile MCP's temporary device agent was removed afterward.
 - 2026-09-20 — public map expanded to a sourced catalogue, ten experiment records, exact observed version pins, and machine-readable JSON; catalogue research and the last executed benchmark are dated separately.
@@ -48,6 +49,7 @@ Completed experiment for reproducible, local-first web and native app-agent benc
 - Command-first static guide, `llms.txt`, real 404, security headers, and responsive evidence at 390, 768, and 1440 px.
 - Static `/tools` and `/experiments` pages with no client JavaScript.
 - Public `tools.json`, `experiments.json`, and `versions.json` surfaces for agents.
+- Structured comparison rows expose median, observed p95, verified passes/attempts, model use or spend, timing basis and fault result for every retained measured journey.
 - Evidence labels keep benchmarked and screened tools separate from setup-blocked and source-reviewed entries, and every row exposes a version or concrete boundary.
 
 ## Deferred
