@@ -21,9 +21,12 @@ screening results, not universal tool rankings:
 | Repeatable iOS regression | Saved Maestro flows | Slower in tested login runs, but the more dependable current baseline. |
 | Targeted iOS inspection/action | AXe or XcodeBuildMCP | AXe login was faster in screening, but readiness, configuration, and text-entry failures prevented general adoption. |
 
-Read the full [screening report](../adapters/vaultwealth/runtime/REPORT.md) and
-[round-two comparison](../adapters/vaultwealth/runtime/ROUND2.md) before using
-the numbers in a decision. No tool has yet qualified as the overall winner.
+Read the full [screening report](../adapters/vaultwealth/runtime/REPORT.md),
+[round-two comparison](../adapters/vaultwealth/runtime/ROUND2.md), and the
+[expanded web](../adapters/vaultwealth/runtime/EXPANDED_WEB.md) and
+[native readiness](../adapters/vaultwealth/runtime/EXPANDED_NATIVE.md) screens
+before using the numbers in a decision. No tool has yet qualified as the
+overall winner.
 
 ## Clone and prove the runner works
 
@@ -130,4 +133,3 @@ node adapters/vaultwealth/prepare.mjs apply --target /path/to/vaultwealth-worktr
 After preparation, follow the generated
 `local-agent-eval/fast-testing/README.md` in that worktree. Do not merge the
 experiment patch into the application merely to run the benchmark.
-

@@ -107,6 +107,32 @@
         "No claim is made that XCUITest or Detox failed as tools."
       ],
       "evidence": "adapters/vaultwealth/runtime/ROUND2.md#other-round-two-findings"
+    },
+    {
+      "id": "expanded-saved-web-drivers",
+      "title": "Expanded saved-web driver screen",
+      "status": "complete screening",
+      "arms": ["Puppeteer Core", "Selenium WebDriver", "WebdriverIO", "Nightwatch", "Taiko"],
+      "result": "All five candidates completed five independently verified clean searches and detected the stale-search fault. Puppeteer was fastest, but did not meet the 2x adoption gate against Playwright.",
+      "measurements": [
+        "Workflow medians: Puppeteer 2.081 s; WebdriverIO 2.958 s; Selenium 3.633 s; Nightwatch 5.425 s; Taiko 23.850 s.",
+        "Every candidate passed 5/5 clean runs and detected the stale-search mismatch through the backend/UI oracle.",
+        "TestCafe 3.7.6 hit the bounded 60 s setup timeout; Cypress 16.1.0 had no isolated application binary. Neither is counted as a tool failure."
+      ],
+      "evidence": "adapters/vaultwealth/runtime/EXPANDED_WEB.md"
+    },
+    {
+      "id": "expanded-native-readiness",
+      "title": "Expanded native agent-tool readiness",
+      "status": "complete bounded screen",
+      "arms": ["ios-simulator-mcp", "Mobile MCP", "fb-idb"],
+      "result": "Both MCP servers started and found the dedicated simulator. ios-simulator-mcp returned the accessibility tree through isolated idb; Mobile MCP listed 27 elements and its temporary device agent was removed afterward.",
+      "measurements": [
+        "ios-simulator-mcp 2.1.0 exposed 17 tools and returned a 6,940-character accessibility description.",
+        "Mobile MCP 1.0.4 exposed 32 tools and listed 27 elements with device agent 0.0.26.",
+        "These are readiness probes, not saved-flow latency or defect-detection results."
+      ],
+      "evidence": "adapters/vaultwealth/runtime/EXPANDED_NATIVE.md"
     }
   ]
 }

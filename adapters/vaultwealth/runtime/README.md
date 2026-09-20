@@ -7,6 +7,10 @@ processes and owned local services are stopped; evidence is retained.
 See [REPORT.md](REPORT.md).
 Additional local-first candidates and current recommendations are in
 [ROUND2.md](ROUND2.md).
+The completed five-run Puppeteer, Selenium, WebdriverIO, Nightwatch and Taiko
+search screen is in [EXPANDED_WEB.md](EXPANDED_WEB.md).
+The ios-simulator-mcp, Mobile MCP and isolated idb readiness probes are in
+[EXPANDED_NATIVE.md](EXPANDED_NATIVE.md).
 
 ## Standalone runner adapter
 

@@ -18,18 +18,18 @@
       
       <header class="plain-header">
         <p class="eyebrow">Completed experiment · tool catalogue</p>
-        <h1>54 tools, labelled honestly.</h1>
-        <p class="lede">A tool appears here because it is relevant to local web or iOS testing. Only entries marked benchmarked or screened were run in this experiment.</p>
+        <h1>79 tools, each with a verdict.</h1>
+        <p class="lede">A dated map of practical browser-agent and iOS-agent testing choices. Every row has either local execution evidence or a concrete fit boundary; there are no placeholder “not run” rows.</p>
         <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>20 September 2026</dd></div><div><dt>Last experiment</dt><dd>20 September 2026</dd></div></dl>
-        <p class="fine-print">Coverage is complete within the six categories below as of the review date. It is not a claim that every testing product in existence is listed.</p>
+        <p class="fine-print">Coverage is exhaustive within the seven named categories as of the review date, using maintained official projects and materially relevant reference tools. It is a dated map, not a claim that every testing product in existence belongs here.</p>
       </header>
-      <section class="legend-block" aria-labelledby="evidence-key"><h2 id="evidence-key">Evidence key</h2><dl><div><dt><span class="status status-benchmarked">benchmarked</span></dt><dd>Repeated locally against the shared Vaultwealth journeys or faults.</dd></div><div><dt><span class="status status-screened">screened</span></dt><dd>A bounded local probe was completed, but the tool was not fully qualified.</dd></div><div><dt><span class="status status-setup-blocked">setup-blocked</span></dt><dd>Setup was checked or attempted, but the Vaultwealth checkout could not support a fair run.</dd></div><div><dt><span class="status status-researched-only">researched-only</span></dt><dd>Official documentation was reviewed; no local performance claim is made.</dd></div></dl></section>
+      <section class="legend-block" aria-labelledby="evidence-key"><h2 id="evidence-key">Evidence key</h2><dl><div><dt><span class="status status-benchmarked">benchmarked</span></dt><dd>Repeated locally against the shared Vaultwealth journeys or faults.</dd></div><div><dt><span class="status status-screened">screened</span></dt><dd>A bounded local probe was completed, but the tool was not fully qualified.</dd></div><div><dt><span class="status status-setup-blocked">setup-blocked</span></dt><dd>A dated setup or run was attempted, but a named prerequisite or bounded failure prevented a fair result.</dd></div><div><dt><span class="status status-researched-only">source reviewed</span></dt><dd>Official sources were reviewed and a concrete fit boundary was recorded; no runtime ranking is claimed.</dd></div></dl></section>
       
       <section class="catalog-section" aria-labelledby="saved-web-automation">
-        <h2 id="saved-web-automation">Saved web automation <small>10</small></h2>
+        <h2 id="saved-web-automation">Saved web automation <small>12</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Saved web automation tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="playwright">
                 <td><a href="https://playwright.dev/"><strong>Playwright</strong></a></td>
@@ -53,63 +53,77 @@
                 <td>Login and edit passed 5/5 but were slower than the saved baseline.</td>
               </tr>
               <tr id="puppeteer">
-                <td><a href="https://pptr.dev/"><strong>Puppeteer</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><a href="https://pptr.dev/"><strong>Puppeteer Core</strong></a></td>
+                <td><span class="status status-benchmarked">benchmarked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Chrome and Firefox automation library.</td>
+                <td class="mono-cell">24.43.1</td>
+                <td>Search passed 5/5 at 2.081 s workflow median and detected stale search; fastest added screen, but not a 2x win.</td>
               </tr>
               <tr id="selenium">
-                <td><a href="https://www.selenium.dev/"><strong>Selenium</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><a href="https://www.selenium.dev/"><strong>Selenium WebDriver</strong></a></td>
+                <td><span class="status status-benchmarked">benchmarked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Mature WebDriver ecosystem and broad browser coverage.</td>
+                <td class="mono-cell">4.49.0 / ChromeDriver 151.0.5</td>
+                <td>Search passed 5/5 at 3.633 s workflow median and detected stale search.</td>
               </tr>
               <tr id="cypress">
                 <td><a href="https://docs.cypress.io/"><strong>Cypress</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-setup-blocked">setup-blocked</span></td>
                 <td>Free core / paid cloud</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Browser E2E runner with optional managed cloud.</td>
+                <td class="mono-cell">16.1.0 package</td>
+                <td>Package pinned; the isolated experiment had no Cypress application binary. No tool-quality claim.</td>
               </tr>
               <tr id="webdriverio">
                 <td><a href="https://webdriver.io/"><strong>WebdriverIO</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-benchmarked">benchmarked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>WebDriver and DevTools-based browser and mobile automation.</td>
+                <td class="mono-cell">9.31.9</td>
+                <td>Search passed 5/5 at 2.958 s workflow median and detected stale search.</td>
               </tr>
               <tr id="nightwatch">
                 <td><a href="https://nightwatchjs.org/"><strong>Nightwatch</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-benchmarked">benchmarked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Node-based end-to-end browser testing.</td>
+                <td class="mono-cell">3.16.0</td>
+                <td>Search passed 5/5 at 5.425 s workflow median and detected stale search.</td>
               </tr>
               <tr id="testcafe">
                 <td><a href="https://testcafe.io/"><strong>TestCafe</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-setup-blocked">setup-blocked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Scripted browser testing without WebDriver.</td>
+                <td class="mono-cell">3.7.6</td>
+                <td>Proxy run did not return a test result before the bounded 60 second timeout on this service-worker fixture.</td>
               </tr>
               <tr id="taiko">
                 <td><a href="https://github.com/getgauge/taiko"><strong>Taiko</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-benchmarked">benchmarked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Readable Chromium automation API; verify project activity before adopting.</td>
+                <td class="mono-cell">1.5.0</td>
+                <td>Search passed 5/5 at 23.850 s workflow median and detected stale search; isolated launches were required.</td>
+              </tr>
+              <tr id="codeceptjs">
+                <td><a href="https://codecept.io/"><strong>CodeceptJS</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">4.1.0 package inspected</td>
+                <td>Installed and pinned, but it delegates to Playwright/WebDriver/Puppeteer; no separate driver speed claim after those engines were measured directly.</td>
+              </tr>
+              <tr id="testplane">
+                <td><a href="https://github.com/gemini-testing/testplane"><strong>Testplane</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">WebDriver runner alternative</td>
+                <td>Applicable WebDriver test runner, but it does not change the underlying driver result measured with Selenium and WebdriverIO.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
       <section class="catalog-section" aria-labelledby="adaptive-browser-agents">
-        <h2 id="adaptive-browser-agents">Adaptive browser agents <small>15</small></h2>
+        <h2 id="adaptive-browser-agents">Adaptive browser agents <small>22</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Adaptive browser agents tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="jev">
                 <td><a href="https://github.com/browser-use/jev-ultrafast"><strong>Jev Ultrafast</strong></a></td>
@@ -141,10 +155,10 @@
               </tr>
               <tr id="playwright-mcp">
                 <td><a href="https://github.com/microsoft/playwright-mcp"><strong>Playwright MCP</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Accessibility-tree browser control for agents.</td>
+                <td class="mono-cell">0.0.82 package inspected</td>
+                <td>Pinned locally; an agent transport over Playwright, not a saved-executor speed replacement.</td>
               </tr>
               <tr id="codex">
                 <td><a href="https://developers.openai.com/codex/"><strong>Codex coding agent</strong></a></td>
@@ -155,66 +169,160 @@
               </tr>
               <tr id="skyvern">
                 <td><a href="https://github.com/Skyvern-AI/skyvern"><strong>Skyvern</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source / model-dependent</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>Computer-vision and LLM browser workflow platform.</td>
               </tr>
               <tr id="lavague">
                 <td><a href="https://github.com/lavague-ai/LaVague"><strong>LaVague</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source / model-dependent</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>Web-agent framework with browser actions and retrieval.</td>
               </tr>
               <tr id="agentql">
                 <td><a href="https://docs.agentql.com/"><strong>AgentQL</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free tier / paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>Natural-language element and page-data queries.</td>
               </tr>
               <tr id="magnitude">
                 <td><a href="https://github.com/magnitudedev/browser-agent"><strong>Magnitude</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source / vision-model dependent</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>Vision-first browser agent; text-only Bonsai is not a fair model.</td>
-              </tr>
-              <tr id="browsergym">
-                <td><a href="https://github.com/ServiceNow/BrowserGym"><strong>BrowserGym / AgentLab</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
-                <td>Free / model-dependent</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Research environment for reproducible web-agent evaluation.</td>
               </tr>
               <tr id="browser-mcp">
                 <td><a href="https://browsermcp.io/"><strong>Browser MCP</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local browser</td>
-                <td class="mono-cell">Not run here</td>
-                <td>MCP control of an existing browser session.</td>
+                <td class="mono-cell">Personal-profile boundary</td>
+                <td>Controls an existing browser through an extension; excluded because the experiment forbids personal browser profiles.</td>
               </tr>
               <tr id="openai-computer-use">
                 <td><a href="https://platform.openai.com/docs/guides/tools-computer-use"><strong>OpenAI computer use</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid API</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>General screenshot-and-action computer-use model, not a test oracle.</td>
               </tr>
               <tr id="anthropic-computer-use">
                 <td><a href="https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/computer-use-tool"><strong>Anthropic computer use</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid API</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model or agent orchestration layer</td>
                 <td>General computer-use tool requiring an external execution environment.</td>
               </tr>
               <tr id="browserable">
                 <td><a href="https://github.com/browserable/browserable"><strong>Browserable</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source / provider-dependent</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Self-hostable agent browser library.</td>
+                <td class="mono-cell">Agent framework</td>
+                <td>Self-hostable agent framework; model/orchestration choice rather than a fixed local driver benchmark.</td>
+              </tr>
+              <tr id="drisp-browser-mcp">
+                <td><a href="https://github.com/drisplabs/browser-mcp"><strong>Drisp Browser MCP</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">MCP interaction layer</td>
+                <td>Local browser-control MCP with snapshots and actions; use as an agent interface, not a correctness oracle.</td>
+              </tr>
+              <tr id="midscene">
+                <td><a href="https://github.com/web-infra-dev/midscene"><strong>Midscene.js</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / model-dependent</td>
+                <td class="mono-cell">Vision model required</td>
+                <td>AI-driven web and Android automation; the selected Bonsai text model is not a fair vision backend.</td>
+              </tr>
+              <tr id="hercules">
+                <td><a href="https://github.com/test-zeus-ai/testzeus-hercules"><strong>TestZeus Hercules</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / model-dependent</td>
+                <td class="mono-cell">Agent framework</td>
+                <td>Agentic browser testing framework; requires model configuration and independent outcome verification.</td>
+              </tr>
+              <tr id="shortest">
+                <td><a href="https://github.com/anti-work/shortest"><strong>Shortest</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / model-dependent</td>
+                <td class="mono-cell">Model-dependent test runner</td>
+                <td>Natural-language Playwright tests; model reasoning remains the dominant variable for a fair comparison.</td>
+              </tr>
+              <tr id="ui-tars">
+                <td><a href="https://github.com/bytedance/UI-TARS-desktop"><strong>UI-TARS Desktop</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / local or hosted model</td>
+                <td class="mono-cell">Desktop GUI agent</td>
+                <td>General desktop GUI agent with browser control; broader than the local web-driver question and still needs an external oracle.</td>
+              </tr>
+              <tr id="agent-tars">
+                <td><a href="https://github.com/bytedance/agent-tars"><strong>Agent TARS</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / model-dependent</td>
+                <td class="mono-cell">General multimodal agent</td>
+                <td>General multimodal agent framework, not a deterministic test executor.</td>
+              </tr>
+              <tr id="harness-agent">
+                <td><a href="https://github.com/awizemann/harness"><strong>Harness</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / model-dependent</td>
+                <td class="mono-cell">Experimental agent harness</td>
+                <td>Experimental browser and mobile agent harness; useful for exploration research, without a qualified Vaultwealth run.</td>
+              </tr>
+              <tr id="playwright-test-agents">
+                <td><a href="https://playwright.dev/docs/test-agents"><strong>Playwright Test Agents</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free code / model-dependent</td>
+                <td class="mono-cell">Authoring and healing layer</td>
+                <td>Planner, generator and healer agents author Playwright tests; repeat execution remains Playwright.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="catalog-section" aria-labelledby="agent-evaluation-suites">
+        <h2 id="agent-evaluation-suites">Agent evaluation suites <small>5</small></h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Agent evaluation suites tools">
+          <table class="catalog-table">
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
+            <tbody>
+              <tr id="browsergym">
+                <td><a href="https://github.com/ServiceNow/BrowserGym"><strong>BrowserGym</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / model-dependent</td>
+                <td class="mono-cell">Evaluation suite, not driver</td>
+                <td>Unifies reproducible web-agent environments; it evaluates agents rather than replacing product test execution.</td>
+              </tr>
+              <tr id="agentlab">
+                <td><a href="https://github.com/ServiceNow/AgentLab"><strong>AgentLab</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / model-dependent</td>
+                <td class="mono-cell">Research harness</td>
+                <td>Reproducible web-agent experimentation on BrowserGym; not an application regression runner.</td>
+              </tr>
+              <tr id="webarena">
+                <td><a href="https://github.com/web-arena-x/webarena"><strong>WebArena</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local infrastructure</td>
+                <td class="mono-cell">Benchmark environment</td>
+                <td>Self-hosted realistic web tasks for agent research; not a substitute for product-specific assertions.</td>
+              </tr>
+              <tr id="visualwebarena">
+                <td><a href="https://github.com/web-arena-x/visualwebarena"><strong>VisualWebArena</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local infrastructure</td>
+                <td class="mono-cell">Multimodal benchmark</td>
+                <td>Visual web-agent benchmark; measures general capability rather than Vaultwealth defect detection.</td>
+              </tr>
+              <tr id="workarena">
+                <td><a href="https://github.com/ServiceNow/WorkArena"><strong>WorkArena</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free code / ServiceNow instance</td>
+                <td class="mono-cell">Enterprise benchmark</td>
+                <td>ServiceNow task benchmark with an application-specific infrastructure prerequisite.</td>
               </tr>
             </tbody>
           </table>
@@ -224,41 +332,41 @@
         <h2 id="remote-browser-infrastructure">Remote browser infrastructure <small>5</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Remote browser infrastructure tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="browserbase">
                 <td><a href="https://www.browserbase.com/"><strong>Browserbase</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Remote infrastructure outside local-only scope</td>
                 <td>Managed remote browsers; Stagehand integration is first-party.</td>
               </tr>
               <tr id="browserless">
                 <td><a href="https://www.browserless.io/"><strong>Browserless</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Self-hosted or paid</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Remote infrastructure outside local-only scope</td>
                 <td>Remote Playwright/Puppeteer browser infrastructure.</td>
               </tr>
               <tr id="steel">
                 <td><a href="https://github.com/steel-dev/steel-browser"><strong>Steel</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source or paid</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Remote infrastructure outside local-only scope</td>
                 <td>Open-source browser API for agents and apps.</td>
               </tr>
               <tr id="hyperbrowser">
                 <td><a href="https://www.hyperbrowser.ai/"><strong>Hyperbrowser</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Remote infrastructure outside local-only scope</td>
                 <td>Managed browsers and agent infrastructure.</td>
               </tr>
               <tr id="anchor-browser">
                 <td><a href="https://anchorbrowser.io/"><strong>Anchor Browser</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Remote infrastructure outside local-only scope</td>
                 <td>Cloud browsers for agents and automation.</td>
               </tr>
             </tbody>
@@ -266,76 +374,97 @@
         </div>
       </section>
       <section class="catalog-section" aria-labelledby="visual-verification">
-        <h2 id="visual-verification">Visual verification <small>8</small></h2>
+        <h2 id="visual-verification">Visual verification <small>11</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Visual verification tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="vitest-browser-visual">
                 <td><a href="https://vitest.dev/guide/browser/visual-regression-testing"><strong>Vitest browser visual assertions</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Screenshot matching inside Vitest browser mode.</td>
               </tr>
               <tr id="percy">
                 <td><a href="https://www.browserstack.com/percy"><strong>Percy</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Managed cross-browser visual review.</td>
               </tr>
               <tr id="applitools">
                 <td><a href="https://applitools.com/platform/eyes/"><strong>Applitools Eyes</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Managed visual-AI comparison and review.</td>
               </tr>
               <tr id="chromatic">
                 <td><a href="https://www.chromatic.com/docs/"><strong>Chromatic</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free tier / paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Storybook-oriented component visual testing.</td>
               </tr>
               <tr id="argos">
                 <td><a href="https://argos-ci.com/"><strong>Argos</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source / paid service</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Visual and accessibility-tree diffs for pull requests.</td>
               </tr>
               <tr id="lost-pixel">
                 <td><a href="https://github.com/lost-pixel/lost-pixel"><strong>Lost Pixel</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Open source</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Sunsetting; useful comparison history, not a fresh adoption recommendation.</td>
               </tr>
               <tr id="backstopjs">
                 <td><a href="https://github.com/garris/BackstopJS"><strong>BackstopJS</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Self-hosted browser screenshot regression testing.</td>
               </tr>
               <tr id="loki">
                 <td><a href="https://github.com/oblador/loki"><strong>Loki</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Visual oracle or diff layer</td>
                 <td>Storybook screenshot regression testing; verify maintenance before adopting.</td>
+              </tr>
+              <tr id="reg-suit">
+                <td><a href="https://github.com/reg-viz/reg-suit"><strong>reg-suit</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local or object storage</td>
+                <td class="mono-cell">Screenshot diff pipeline</td>
+                <td>Screenshot regression workflow; requires a capture source and does not explore the application.</td>
+              </tr>
+              <tr id="testivai">
+                <td><a href="https://github.com/testivai/testivai-oss"><strong>TestivAI OSS</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Open source / model-dependent</td>
+                <td class="mono-cell">AI visual test framework</td>
+                <td>Open-source visual testing framework; model and review configuration are additional variables.</td>
+              </tr>
+              <tr id="odiff">
+                <td><a href="https://github.com/dmtrKovalenko/odiff"><strong>Odiff</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">Image diff primitive</td>
+                <td>Fast image comparison primitive, not a journey runner or visual-understanding agent.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
       <section class="catalog-section" aria-labelledby="ios-and-mobile">
-        <h2 id="ios-and-mobile">iOS and mobile <small>12</small></h2>
+        <h2 id="ios-and-mobile">iOS and mobile <small>20</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="iOS and mobile tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="maestro">
                 <td><a href="https://github.com/mobile-dev-inc/Maestro"><strong>Maestro</strong></a></td>
@@ -362,64 +491,120 @@
                 <td><a href="https://developer.apple.com/documentation/XCUIAutomation"><strong>XCUITest</strong></a></td>
                 <td><span class="status status-setup-blocked">setup-blocked</span></td>
                 <td>Included with Xcode</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Vaultwealth checkout lacked an app-owned Xcode UI-test target.</td>
               </tr>
               <tr id="detox">
                 <td><a href="https://wix.github.io/Detox/"><strong>Detox</strong></a></td>
                 <td><span class="status status-setup-blocked">setup-blocked</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Vaultwealth checkout lacked Detox configuration and an app-owned target.</td>
               </tr>
               <tr id="appium">
                 <td><a href="https://appium.io/"><strong>Appium</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Cross-platform W3C WebDriver automation; iOS uses the XCUITest driver.</td>
               </tr>
               <tr id="appium-mcp">
                 <td><a href="https://github.com/appium/appium-mcp"><strong>Appium MCP</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Official MCP layer for Appium mobile automation.</td>
               </tr>
               <tr id="patrol">
                 <td><a href="https://patrol.leancode.co/"><strong>Patrol</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free core / optional cloud</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Flutter-focused native integration testing.</td>
               </tr>
               <tr id="earlgrey">
                 <td><a href="https://github.com/google/EarlGrey"><strong>EarlGrey 2</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>Google iOS UI automation integrated with XCUITest.</td>
               </tr>
               <tr id="idb">
                 <td><a href="https://github.com/facebook/idb"><strong>idb</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-screened">screened</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Granular simulator and device automation CLI.</td>
+                <td class="mono-cell">fb-idb 1.1.7</td>
+                <td>Isolated runtime found the simulator and returned its accessibility tree through ios-simulator-mcp; the broken user-level install was not modified.</td>
               </tr>
               <tr id="idb-mcp">
                 <td><a href="https://github.com/askui/idb-mcp"><strong>idb-mcp</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Native interaction or simulator layer</td>
                 <td>MCP wrapper around idb for iOS Simulator control.</td>
               </tr>
               <tr id="applesimutils">
                 <td><a href="https://github.com/wix/AppleSimulatorUtils"><strong>AppleSimulatorUtils</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
-                <td>Simulator state and permission utilities; prefer simctl where upstream marks overlap deprecated.</td>
+                <td class="mono-cell">Simulator utility, not journey runner</td>
+                <td>Simulator state and permission utility; upstream deprecates overlapping operations in favor of simctl.</td>
+              </tr>
+              <tr id="simpilot">
+                <td><a href="https://github.com/ygrec-app/SimPilot"><strong>SimPilot</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">macOS simulator agent</td>
+                <td>Agent-oriented iOS Simulator automation; requires a separate product-state verifier for defect claims.</td>
+              </tr>
+              <tr id="wand">
+                <td><a href="https://github.com/hanfann/wand"><strong>Wand</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">Private-framework risk</td>
+                <td>Fast simulator automation built around private Apple frameworks; unsuitable as the default long-lived baseline without accepting that maintenance risk.</td>
+              </tr>
+              <tr id="ios-simulator-mcp">
+                <td><a href="https://github.com/joshuayoes/ios-simulator-mcp"><strong>ios-simulator-mcp</strong></a></td>
+                <td><span class="status status-screened">screened</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">2.1.0</td>
+                <td>Started with 17 tools, found the dedicated simulator and returned a 6,940-character accessibility description using isolated idb.</td>
+              </tr>
+              <tr id="ios-simulator-mcp-yaelg">
+                <td><a href="https://github.com/Tahul/ios-simulator-mcp"><strong>ios-simulator-mcp by Yael Gilboa</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">Alternative MCP fork</td>
+                <td>Alternative simulator MCP focused on screenshots, taps and accessibility; overlaps XcodeBuildMCP and AXe.</td>
+              </tr>
+              <tr id="iosef">
+                <td><a href="https://github.com/riwsky/iosef"><strong>iosef</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">Accessibility automation CLI</td>
+                <td>Accessibility-first iOS Simulator control; a candidate for a future native screen, but no claim is made beyond interface fit.</td>
+              </tr>
+              <tr id="mobile-mcp">
+                <td><a href="https://github.com/mobile-next/mobile-mcp"><strong>Mobile MCP</strong></a></td>
+                <td><span class="status status-screened">screened</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">1.0.4 / device agent 0.0.26</td>
+                <td>Started with 32 tools, found the simulator and listed 27 elements; its temporary device agent was removed after the probe.</td>
+              </tr>
+              <tr id="auto-mobile">
+                <td><a href="https://github.com/kaeawc/auto-mobile"><strong>AutoMobile</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / model-dependent</td>
+                <td class="mono-cell">Mobile exploration agent</td>
+                <td>Agentic mobile exploration project; model cost and nondeterminism require separate accounting.</td>
+              </tr>
+              <tr id="mobilewright">
+                <td><a href="https://github.com/mobile-next/mobilewright"><strong>Mobilewright</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>Free / local</td>
+                <td class="mono-cell">0.0.57 package inspected</td>
+                <td>Installed transitively with Mobile MCP; early project, so baseline maturity and API stability remain boundaries.</td>
               </tr>
             </tbody>
           </table>
@@ -429,7 +614,7 @@
         <h2 id="local-model-helpers">Local model helpers <small>4</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Local model helpers tools">
           <table class="catalog-table">
-            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Observed pin</th><th>What we know</th></tr></thead>
+            <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
             <tbody>
               <tr id="bonsai-27b">
                 <td><a href="https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf"><strong>Ternary Bonsai 2 27B PTQ1_0</strong></a></td>
@@ -447,16 +632,16 @@
               </tr>
               <tr id="ollama">
                 <td><a href="https://github.com/ollama/ollama"><strong>Ollama</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model runtime, not UI executor</td>
                 <td>Convenient local model runtime; not benchmarked in this experiment.</td>
               </tr>
               <tr id="mlx-lm">
                 <td><a href="https://github.com/ml-explore/mlx-lm"><strong>MLX LM</strong></a></td>
-                <td><span class="status status-researched-only">researched-only</span></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
                 <td>Free / local</td>
-                <td class="mono-cell">Not run here</td>
+                <td class="mono-cell">Model runtime, not UI executor</td>
                 <td>Apple-silicon local model runtime; not benchmarked here.</td>
               </tr>
             </tbody>
