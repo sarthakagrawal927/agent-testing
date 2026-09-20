@@ -16,6 +16,8 @@ test('public map is agent-first, static and links to its public source', async (
   assert.doesNotMatch(html, /private repository/i);
   assert.match(html, /A zero exit code is not a correct product state/);
   assert.match(html, /No overall replacement has qualified yet/);
+  assert.match(html, /Measured journey arms/);
+  assert.match(html, /Accepted paid API spend/);
   assert.doesNotMatch(html, /<script\b/i);
   assert.doesNotMatch(html, /https?:\/\/[^"']+\.(?:js|css)/i);
 });
@@ -37,6 +39,9 @@ test('public map ships agent and missing-route surfaces', async () => {
   assert.match(toolsPage, /79 tools, each with a verdict/);
   assert.doesNotMatch(toolsPage, /Not run here/);
   assert.match(experimentsPage, /What was actually run/);
+  assert.match(experimentsPage, /Measured journey matrix/);
+  assert.match(experimentsPage, /26 arms/);
+  assert.match(experimentsPage, /Other measured probes/);
   assert.doesNotMatch(toolsPage, /<script\b/i);
   assert.doesNotMatch(experimentsPage, /<script\b/i);
 });
@@ -63,12 +68,53 @@ test('catalogue has broad coverage without presenting research as benchmark evid
   assert.ok(versions.pins.length >= 15);
   assert.equal(tools.last_experiment, '2026-09-20');
   assert.equal(experiments.last_experiment, '2026-09-20');
+  assert.equal(experiments.coverage.catalogue_tools, tools.tools.length);
+  const evidenceCounts = Object.fromEntries(
+    [...Map.groupBy(tools.tools, (tool) => tool.evidence)].map(([key, entries]) => [key, entries.length]),
+  );
+  assert.equal(experiments.coverage.executed_tools, evidenceCounts.benchmarked + evidenceCounts.screened);
+  assert.equal(experiments.coverage.repeated_benchmarks, evidenceCounts.benchmarked);
+  assert.equal(experiments.coverage.bounded_screens, evidenceCounts.screened);
+  assert.equal(experiments.coverage.setup_blocked, evidenceCounts['setup-blocked']);
+  assert.equal(experiments.coverage.source_reviewed, evidenceCounts['researched-only']);
+  assert.equal(experiments.coverage.experiment_records, experiments.experiments.length);
+  assert.equal(experiments.journey_comparisons.length, 26);
+  assert.equal(experiments.probe_comparisons.length, 7);
+  const journeyTotals = experiments.journey_comparisons.reduce(
+    (totals, row) => ({ passes: totals.passes + row.verified_passes, attempts: totals.attempts + row.attempts }),
+    { passes: 0, attempts: 0 },
+  );
+  assert.equal(experiments.coverage.verified_journey_passes, journeyTotals.passes);
+  assert.equal(experiments.coverage.journey_attempts, journeyTotals.attempts);
 
   for (const tool of tools.tools) {
     assert.match(tool.url, /^https:\/\//);
     assert.match(toolsPage, new RegExp(`id="${tool.id}"`));
     assert.ok(tool.version || tool.disposition || tools.category_boundaries[tool.category]);
   }
+});
+
+test('quantitative matrix preserves denominators and timing semantics', async () => {
+  const experiments = JSON.parse(await read('experiments.json'));
+
+  for (const row of experiments.journey_comparisons) {
+    assert.ok(row.attempts > 0);
+    assert.ok(row.verified_passes >= 0 && row.verified_passes <= row.attempts);
+    assert.ok(row.timing_basis.length > 0);
+    assert.ok(row.model_use.length > 0);
+    assert.ok(row.fault_result.length > 0);
+    if (row.median_seconds !== null) assert.ok(row.median_seconds > 0);
+    if (row.observed_p95_seconds !== null) {
+      assert.ok(row.median_seconds !== null);
+      assert.ok(row.observed_p95_seconds >= row.median_seconds);
+    }
+  }
+
+  const browserUse = experiments.journey_comparisons.find((row) => row.mode === 'Browser Use + Bonsai');
+  assert.deepEqual([browserUse.verified_passes, browserUse.attempts], [4, 5]);
+  const batched = experiments.journey_comparisons.find((row) => row.mode === 'Codex batched');
+  assert.deepEqual([batched.verified_passes, batched.attempts], [0, 5]);
+  assert.match(batched.timing_basis, /all attempts/);
 });
 
 test('expanded driver screen records verified results and a fault oracle', async () => {

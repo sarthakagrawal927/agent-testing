@@ -14,6 +14,7 @@ const formatDate = (value) => new Intl.DateTimeFormat('en-GB', {
   timeZone: 'UTC',
 }).format(new Date(`${value}T00:00:00Z`));
 const evidenceLabel = (value) => value === 'researched-only' ? 'source reviewed' : value;
+const formatSeconds = (value) => value === null ? '—' : `${Number(value).toFixed(3)} s`;
 
 const layout = ({ title, description, body }) => `<!doctype html>
 <html lang="en">
@@ -88,6 +89,38 @@ const experimentSections = experiments.experiments.map((experiment, index) => `
         <p class="fine-print">Evidence: <code>${escapeHtml(experiment.evidence)}</code></p>
       </article>`).join('');
 
+const coverageItems = [
+  ['Tools mapped', experiments.coverage.catalogue_tools],
+  ['Tools executed', experiments.coverage.executed_tools],
+  ['Measured journey arms', experiments.journey_comparisons.length],
+  ['Verified journey attempts', `${experiments.coverage.verified_journey_passes}/${experiments.coverage.journey_attempts}`],
+  ['Seeded defect types', experiments.coverage.seeded_defect_types],
+  ['Accepted paid API spend', `$${experiments.coverage.estimated_paid_api_spend_usd.toFixed(5)}`],
+];
+const coverageCards = coverageItems.map(([label, value]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
+
+const journeyRows = experiments.journey_comparisons.map((row) => `
+              <tr>
+                <td>${escapeHtml(row.platform)}</td>
+                <td>${escapeHtml(row.journey)}</td>
+                <td><strong>${escapeHtml(row.mode)}</strong><small>${escapeHtml(row.timing_basis)}</small></td>
+                <td class="mono-cell">${formatSeconds(row.median_seconds)}</td>
+                <td class="mono-cell">${formatSeconds(row.observed_p95_seconds)}</td>
+                <td class="mono-cell">${escapeHtml(`${row.verified_passes}/${row.attempts}`)}</td>
+                <td>${escapeHtml(row.model_use)}</td>
+                <td>${escapeHtml(row.fault_result)}</td>
+              </tr>`).join('');
+
+const probeRows = experiments.probe_comparisons.map((row) => `
+              <tr>
+                <td><strong>${escapeHtml(row.probe)}</strong></td>
+                <td class="mono-cell">${formatSeconds(row.median_seconds)}</td>
+                <td class="mono-cell">${formatSeconds(row.observed_p95_seconds)}</td>
+                <td class="mono-cell">${escapeHtml(row.passes)}</td>
+                <td>${escapeHtml(row.numeric_detail)}</td>
+                <td>${escapeHtml(row.boundary)}</td>
+              </tr>`).join('');
+
 const versionRows = versions.pins.map((pin) => `<tr><td><strong>${escapeHtml(pin.name)}</strong></td><td class="mono-cell">${escapeHtml(pin.version)}</td><td>${escapeHtml(pin.source)}</td></tr>`).join('');
 
 const experimentsHtml = layout({
@@ -101,6 +134,9 @@ const experimentsHtml = layout({
         <dl class="dates"><div><dt>Last experiment</dt><dd>20 September 2026</dd></div><div><dt>Current decision</dt><dd>Keep Playwright + Maestro</dd></div></dl>
       </header>
       <section class="plain-callout"><h2>Bottom line</h2><p>${escapeHtml(experiments.decision)}</p><p>Promising results remain screening evidence. None completed the planned 20 warm and three cold qualification set across every journey.</p></section>
+      <section aria-labelledby="coverage"><h2 id="coverage">Coverage in numbers</h2><div class="evidence coverage-evidence">${coverageCards}</div><p class="fine-print">Executed means benchmarked or bounded-screened locally. The other ${experiments.coverage.source_reviewed} catalogue entries retain source-backed fit boundaries; they are not assigned synthetic scores.</p></section>
+      <section class="catalog-section" aria-labelledby="journey-matrix"><h2 id="journey-matrix">Measured journey matrix <small>${experiments.journey_comparisons.length} arms</small></h2><p>Median and observed p95 include the timing basis shown under each mode. At these sample sizes, observed p95 is usually the maximum. A dash means the report did not establish that number.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Measured web and iOS journey comparison"><table class="catalog-table result-table"><thead><tr><th>Platform</th><th>Journey</th><th>Mode</th><th>Median</th><th>Observed p95</th><th>Verified</th><th>Model / cost</th><th>Seeded fault</th></tr></thead><tbody>${journeyRows}</tbody></table></div></section>
+      <section class="catalog-section" aria-labelledby="probe-matrix"><h2 id="probe-matrix">Other measured probes <small>${experiments.probe_comparisons.length}</small></h2><p>These numbers are useful, but they are not comparable end-to-end application journeys.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Measured readiness diagnostic and local model probes"><table class="catalog-table result-table"><thead><tr><th>Probe</th><th>Median</th><th>Observed p95</th><th>Passes</th><th>Numeric detail</th><th>Boundary</th></tr></thead><tbody>${probeRows}</tbody></table></div></section>
       <section aria-labelledby="run-it"><h2 id="run-it">Clone and replay</h2><pre><code>gh repo clone sarthakagrawal927/agent-testing
 cd agent-testing
 npm test
