@@ -1,0 +1,33 @@
+{
+  "installed_at_utc": "2026-09-20",
+  "scope": "Bonsai 2 27B language-only local runtime; no vision, MLX, WebUI, or Jupyter",
+  "runtime": {
+    "repository": "https://github.com/PrismML-Eng/llama.cpp",
+    "release_tag": "prism-b10709-9a9394a",
+    "commit": "9a9394a895b96003ca842a6041cb28ac49a108f7",
+    "asset": "llama-prism-b10709-9a9394a-bin-macos-arm64.tar.gz",
+    "asset_url": "https://github.com/PrismML-Eng/llama.cpp/releases/download/prism-b10709-9a9394a/llama-prism-b10709-9a9394a-bin-macos-arm64.tar.gz",
+    "asset_bytes": 11500187,
+    "sha256": "f9cdf245fb7b832f1996dd776b321d4ae1f23b6d88c380100f636742c3a980ff",
+    "binary": "runtime/llama-prism-b10709-9a9394a/llama-server",
+    "reported_version": "0.2.0-dev (build 10709, commit 9a9394a89), Darwin arm64"
+  },
+  "model": {
+    "repository": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
+    "revision": "6ed5e12bf84b7a63069882c91dd9e9218647d17b",
+    "file": "Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+    "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/6ed5e12bf84b7a63069882c91dd9e9218647d17b/Ternary-Bonsai-2-27B-PTQ1_0.gguf?download=true",
+    "bytes": 5946648928,
+    "huggingface_file_oid": "8c9da0522bd62bdda9347ed1855ea024d7e11765",
+    "sha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
+    "path": "models/Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+    "license": "Apache-2.0"
+  },
+  "download_elapsed": "4:08.25",
+  "verification": [
+    "Runtime SHA-256 matches GitHub release API digest.",
+    "Model byte count matches Hugging Face tree metadata.",
+    "Root independently computed model SHA-256; it matches Hugging Face tree metadata lfs.oid.",
+    "llama-server --version and --help inspected only; no model load, server, inference, or benchmark run."
+  ]
+}

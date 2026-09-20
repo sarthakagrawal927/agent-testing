@@ -1,0 +1,18 @@
+{
+  "name": "@fleet/agent-testing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "agent-testing": "bin/agent-testing.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs adapters/vaultwealth/runtime/qualify-agent.test.mjs",
+    "validate:vaultwealth": "node bin/agent-testing.mjs validate --manifest adapters/vaultwealth/runtime/shared-benchmark.manifest.json",
+    "syntax": "node scripts/check-syntax.mjs",
+    "check": "npm run syntax && npm test && npm run validate:vaultwealth && git diff --check"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

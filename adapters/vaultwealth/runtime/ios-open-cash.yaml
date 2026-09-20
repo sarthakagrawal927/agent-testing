@@ -1,0 +1,22 @@
+appId: com.vaultwealth.app-development
+---
+- scrollUntilVisible:
+    element: 'HSBC, 1 account, .*'
+    direction: DOWN
+    timeout: 20000
+    centerElement: true
+- runFlow:
+    when:
+      notVisible: 'H, Cash Savings, USD, .*'
+    commands:
+      - tapOn: 'HSBC, 1 account, .*'
+- scrollUntilVisible:
+    element: 'H, Cash Savings, USD, .*'
+    direction: DOWN
+    timeout: 10000
+    centerElement: true
+- tapOn: 'H, Cash Savings, USD, .*'
+- extendedWaitUntil:
+    visible:
+      id: edit-asset-save
+    timeout: 10000

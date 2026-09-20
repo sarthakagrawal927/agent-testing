@@ -1,0 +1,12 @@
+{
+  "name": "vault-testing-experiment-tools",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "@playwright/cli": "0.1.21",
+    "@browserbasehq/stagehand": "3.4.0",
+    "agent-browser": "0.38.1",
+    "chrome-devtools-mcp": "1.9.0",
+    "zod": "3.25.76"
+  }
+}

@@ -1,0 +1,7 @@
+appId: com.vaultwealth.app-development
+---
+- openLink: 'vault-dev:///plan/assets/add?__testingReset=${EPOCH}'
+- extendedWaitUntil:
+    visible:
+      id: asset-search-picker-input
+    timeout: 10000

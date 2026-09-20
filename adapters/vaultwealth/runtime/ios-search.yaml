@@ -1,0 +1,36 @@
+appId: com.vaultwealth.app-development
+---
+- tapOn:
+    id: asset-search-picker-input
+- inputText: VOO
+- assertVisible:
+    id: asset-search-picker-input
+    text: '(?i)VOO'
+- extendedWaitUntil:
+    visible: '.*Vanguard S&P 500 ETF.*'
+    timeout: 10000
+- takeScreenshot: ${EVIDENCE}/search-0
+- tapOn:
+    id: asset-search-picker-input
+- eraseText: 3
+- inputText: QQQ
+- assertVisible:
+    id: asset-search-picker-input
+    text: '(?i)QQQ'
+- extendedWaitUntil:
+    visible: '.*Invesco QQQ Trust.*'
+    timeout: 10000
+- assertNotVisible: '.*Vanguard S&P 500 ETF.*'
+- takeScreenshot: ${EVIDENCE}/search-1
+- tapOn:
+    id: asset-search-picker-input
+- eraseText: 3
+- inputText: zz-no-match
+- assertVisible:
+    id: asset-search-picker-input
+    text: '(?i)zz-no-match'
+- extendedWaitUntil:
+    visible: '.*No results.*'
+    timeout: 10000
+- assertNotVisible: '.*Invesco QQQ Trust.*'
+- takeScreenshot: ${EVIDENCE}/search-2

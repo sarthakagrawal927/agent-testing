@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "agent-testing.adapter-provenance.v1",
+  "adapter": "vaultwealth",
+  "sourceRepository": "https://github.com/vaultwealth-ltd/webapp",
+  "sourcePullRequest": "https://github.com/vaultwealth-ltd/webapp/pull/2374",
+  "sourceCommit": "bdd56fbfe7f20bf23349cbc43b9a5051e44319b7",
+  "compatibleBaseChecked": "90ab1a5ae0850c1b380b13a7a5138bd90b8e976c",
+  "sourcePullRequestDisposition": "closed-without-merge",
+  "historicalResultsRelabeled": false
+}

@@ -1,0 +1,8 @@
+appId: com.vaultwealth.app-development
+---
+- openLink: 'vault-dev://expo-development-client/?url=http%3A%2F%2Flocalhost%3A18793'
+- extendedWaitUntil:
+    visible:
+      id: onboarding-login-button
+    timeout: 90000
+- takeScreenshot: local-agent-eval/fast-testing/artifacts/ios-onboarding

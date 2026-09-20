@@ -1,0 +1,6 @@
+appId: com.vaultwealth.app-development
+---
+- openLink: 'vault-dev:///plan?__testingReset=${EPOCH}'
+- extendedWaitUntil:
+    visible: 'Add asset or liability'
+    timeout: 10000

@@ -1,0 +1,22 @@
+appId: com.vaultwealth.app-development
+---
+- runFlow:
+    when:
+      visible:
+        id: top-nav-profile
+    commands:
+      - tapOn:
+          id: top-nav-profile
+- scrollUntilVisible:
+    element:
+      text: Log out
+    direction: DOWN
+    timeout: 20000
+- tapOn: Log out
+- extendedWaitUntil:
+    visible:
+      id: login-email-input
+    timeout: 10000
+- tapOn:
+    id: login-email-input
+- eraseText: 100

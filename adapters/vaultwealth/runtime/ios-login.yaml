@@ -1,0 +1,38 @@
+appId: com.vaultwealth.app-development
+---
+- extendedWaitUntil:
+    visible:
+      id: login-email-input
+    timeout: 10000
+- tapOn:
+    id: login-email-input
+- inputText: user@example.com
+- tapOn:
+    id: login-email-continue
+- tapOn:
+    id: login-password-input
+- inputText: WrongPassword1!
+- tapOn:
+    id: login-password-continue
+- extendedWaitUntil:
+    visible: '.*email and password combination are invalid.*'
+    timeout: 10000
+- takeScreenshot: ${EVIDENCE}/invalid
+- tapOn:
+    id: login-email-continue
+- tapOn:
+    id: login-password-input
+- inputText: SecurePass1!
+- tapOn:
+    id: login-password-continue
+- tapOn:
+    id: otp-input-0
+- inputText: '123456'
+- tapOn:
+    id: login-otp-continue
+- tapOn:
+    id: login-biometrics-skip
+- extendedWaitUntil:
+    visible:
+      id: top-nav-profile
+    timeout: 10000

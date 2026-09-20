@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "status": { "type": "string", "enum": ["passed", "failed", "blocked"] },
+    "invalidCredentialsRejected": { "type": "boolean" },
+    "accountAndDestinationVerified": { "type": "boolean" },
+    "visualDefects": { "type": "array", "items": { "type": "string" } },
+    "functionalDefects": { "type": "array", "items": { "type": "string" } },
+    "screenshotsInspected": { "type": "array", "items": { "type": "string" } },
+    "recoveryCount": { "type": "integer" },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": [
+    "status",
+    "invalidCredentialsRejected",
+    "accountAndDestinationVerified",
+    "visualDefects",
+    "functionalDefects",
+    "screenshotsInspected",
+    "recoveryCount",
+    "limitations"
+  ],
+  "additionalProperties": false
+}
