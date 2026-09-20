@@ -26,6 +26,7 @@ Private internal tooling for reproducible, local-first web and native app-agent 
 
 ## Timeline
 
+- 2026-09-20 — public map expanded to a sourced 54-tool catalogue, eight experiment records, exact observed version pins, and machine-readable JSON; catalogue research and the last executed benchmark are dated separately.
 - 2026-09-20 — agent-first Map of Agent Testing deployed as a static Cloudflare Worker at `browser-agents.sarthakagrawal.dev`, with the workers.dev fallback retained; canonical Fleet ownership recorded under this project.
 - 2026-09-20 — standalone private repository created; generic runner and Vaultwealth experiment extracted from product repositories.
 
@@ -42,6 +43,9 @@ Private internal tooling for reproducible, local-first web and native app-agent 
 - Warm/cold statistics, model/cost counters, defect detection, retry, and intervention metrics.
 - Reproducible Vaultwealth adapter with historical reports and opt-in app-hook patch.
 - Command-first static guide, `llms.txt`, real 404, security headers, and responsive evidence at 390, 768, and 1440 px.
+- Static `/tools` and `/experiments` pages with no client JavaScript.
+- Public `tools.json`, `experiments.json`, and `versions.json` surfaces for agents.
+- Evidence labels keep benchmarked and screened tools separate from setup-blocked and researched-only entries.
 
 ## Todo / Planned / Deferred / Blocked
 
