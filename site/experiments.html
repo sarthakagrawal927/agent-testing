@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Vaultwealth agent-testing benchmark results, limitations, version pins and replay paths.">
+    <meta name="theme-color" content="#f7f2e8">
+    <title>Experiments — Map of Agent Testing</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <main id="main" class="page wide-page">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/">Map of Agent Testing</a>
+        <span><a href="/tools">Tools</a> · <a href="/experiments">Experiments</a> · <a href="/llms.txt">Agent summary</a></span>
+      </nav>
+      
+      <header class="plain-header">
+        <p class="eyebrow">Experiment record</p>
+        <h1>What was actually run.</h1>
+        <p class="lede">Vaultwealth web and iOS Simulator, seeded local fixtures, one Mac, bounded runs, and an independent correctness oracle.</p>
+        <dl class="dates"><div><dt>Last experiment</dt><dd>20 September 2026</dd></div><div><dt>Current decision</dt><dd>Keep Playwright + Maestro</dd></div></dl>
+      </header>
+      <section class="plain-callout"><h2>Bottom line</h2><p>Keep Playwright and Maestro as regression baselines. Use adaptive tools for exploration with an independent verifier.</p><p>Promising results remain screening evidence. None completed the planned 20 warm and three cold qualification set across every journey.</p></section>
+      <section aria-labelledby="run-it"><h2 id="run-it">Clone and replay</h2><pre><code>gh repo clone sarthakagrawal927/agent-testing
+cd agent-testing
+npm test
+
+# Validate the real-product adapter
+npm run validate:vaultwealth
+
+# Read exact setup and replay commands
+open adapters/vaultwealth/runtime/README.md</code></pre><p class="fine-print">The repository is private. Product adapters use local or disposable seeded targets only.</p></section>
+      <div class="experiment-list">
+      <article class="experiment" id="web-saved-workflows">
+        <p class="section-label">Experiment 01 · complete screening</p>
+        <h2>Saved web workflows</h2>
+        <p><strong>Arms:</strong> Playwright · agent-browser direct · agent-browser batch</p>
+        <p>Playwright remained the baseline. agent-browser batching improved its own login time, but no candidate met the 2x adoption threshold.</p>
+        <ul><li>Login: Playwright 1.178 s; direct 2.714 s; batch 1.323 s medians; all 5/5.</li><li>Edit: Playwright 1.898 s and direct 1.762 s medians; batch failed 0/5.</li><li>Search: Playwright 2.768 s; direct 2.826 s; batch 2.649 s medians; all 5/5.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/REPORT.md#web-saved-workflows-no-ai</code></p>
+      </article>
+      <article class="experiment" id="seeded-web-defects">
+        <p class="section-label">Experiment 02 · complete screening</p>
+        <h2>Seeded web defects</h2>
+        <p><strong>Arms:</strong> Playwright oracle · agent-browser direct · agent-browser batch where viable</p>
+        <p>The viable Playwright and direct arms detected all five seeded fault types with no clean-run false failure in the selected trials.</p>
+        <ul><li>Detected save failure, wrong persisted value, duplicate write, stale search and clipped control.</li><li>The visual oracle detected 53.14% changed control pixels against a 2% limit.</li><li>This validates fixed oracles; it is not a blinded AI discovery rate.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/REPORT.md#seeded-web-defects</code></p>
+      </article>
+      <article class="experiment" id="agent-stepwise-vs-batched">
+        <p class="section-label">Experiment 03 · complete screening</p>
+        <h2>Coding-agent stepwise versus batched interaction</h2>
+        <p><strong>Arms:</strong> Stepwise Codex · Batched Codex</p>
+        <p>Stepwise passed 5/5. Batched qualified 0/5 and reduced total reported input mostly through cache, not uncached reasoning.</p>
+        <ul><li>Stepwise verified median 155.971 s; 5/5.</li><li>Batched median attempt 123.684 s; only 2/5 functional completions and 0/5 within the recovery gate.</li><li>Total input fell 56.6%, while uncached input fell 8.6%.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/REPORT.md#agent-interaction-strategies</code></p>
+      </article>
+      <article class="experiment" id="jev-specialist">
+        <p class="section-label">Experiment 04 · complete screening</p>
+        <h2>Jev specialist with local Bonsai text helper</h2>
+        <p><strong>Arms:</strong> Jev + TypeSafe selection + Bonsai text · Fixed Playwright/backend oracle</p>
+        <p>Authenticated search passed 5/5 and found the hidden stale-search fault. Login is unsupported because Jev excludes password inputs.</p>
+        <ul><li>Clean search median 11.101 s; observed p95 11.391 s.</li><li>Seven TypeSafe calls plus three local Bonsai calls per run.</li><li>Estimated TypeSafe spend $0.00313047 across five clean runs; about $0.00063 per run.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/REPORT.md#optional-jev-specialist-with-local-bonsai</code></p>
+      </article>
+      <article class="experiment" id="ios-maestro-vs-axe">
+        <p class="section-label">Experiment 05 · screening incomplete</p>
+        <h2>iOS saved flows: Maestro versus AXe</h2>
+        <p><strong>Arms:</strong> Maestro saved flow · AXe batch</p>
+        <p>AXe was much faster on warm login and search, but cold accessibility readiness and inconsistent text entry prevented replacement.</p>
+        <ul><li>Login: Maestro 32.964 s versus AXe 12.612 s medians; both 5/5.</li><li>Search: Maestro 34.673 s versus AXe 15.279 s medians; both 5/5 with journey-specific AXe typing configuration.</li><li>Three app-process relaunch probes returned an empty AXe tree until a Maestro hierarchy request.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/REPORT.md#native-saved-workflows-and-startup-diagnostic</code></p>
+      </article>
+      <article class="experiment" id="bonsai-helper">
+        <p class="section-label">Experiment 06 · complete synthetic screening</p>
+        <h2>Local Bonsai 27B text-helper compatibility</h2>
+        <p><strong>Arms:</strong> Reasoning budget only · Explicit no-thinking template</p>
+        <p>Both profiles passed 25/25 exact responses. Explicit no-thinking was 4.54x faster and used less sampled memory.</p>
+        <ul><li>Budget-only median 4.907 s; observed p95 8.943 s; sampled peak RSS 9.252 GB.</li><li>No-thinking median 1.082 s; observed p95 1.193 s; sampled peak RSS 7.305 GB.</li><li>This was a text-helper probe, not a browser-agent or defect-detection result.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/BONSAI.md</code></p>
+      </article>
+      <article class="experiment" id="round-two-browser-tools">
+        <p class="section-label">Experiment 07 · complete screening</p>
+        <h2>Round-two local browser tools</h2>
+        <p><strong>Arms:</strong> Stagehand uncached · Stagehand cached · Browser Use · Playwright CLI · Chrome DevTools MCP</p>
+        <p>Stagehand cache was the most promising replay result, but missed the 2x gate. Browser Use was slow and 4/5. Chrome DevTools MCP was useful for diagnostics only.</p>
+        <ul><li>Stagehand uncached 26.951 s median; 5/5. Cached 2.201 s median; 4/4 after 25.544 s authoring.</li><li>Browser Use 90.730 s median among successes; 4/5.</li><li>Chrome DevTools MCP diagnostic bundle 0.826 s median; Lighthouse snapshot 1.243 s.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/ROUND2.md</code></p>
+      </article>
+      <article class="experiment" id="xcodebuildmcp-and-blocked-native">
+        <p class="section-label">Experiment 08 · bounded probe</p>
+        <h2>Additional native candidates</h2>
+        <p><strong>Arms:</strong> XcodeBuildMCP · XCUITest feasibility · Detox feasibility</p>
+        <p>XcodeBuildMCP replaced the formatted cash field in 5/5 probes but no save/relaunch journey was qualified. XCUITest and Detox were setup-blocked by checkout structure.</p>
+        <ul><li>XcodeBuildMCP action median 3.834 s; semantic observation median 1.343 s.</li><li>Maestro/debug setup still took about 35 s.</li><li>No claim is made that XCUITest or Detox failed as tools.</li></ul>
+        <p class="fine-print">Evidence: <code>adapters/vaultwealth/runtime/ROUND2.md#other-round-two-findings</code></p>
+      </article></div>
+      <section class="catalog-section" aria-labelledby="versions"><h2 id="versions">Exact observed versions</h2><p>Apple M5 Pro, 48 GiB RAM, Darwin 27.0.0. Dedicated Chromium at 1280x800. iPhone 16 Pro, iOS 26.5.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Exact observed version pins"><table class="catalog-table"><thead><tr><th>Tool or runtime</th><th>Exact observed pin</th><th>Recorded from</th></tr></thead><tbody><tr><td><strong>Playwright</strong></td><td class="mono-cell">1.62.1</td><td>experiment package lock</td></tr><tr><td><strong>agent-browser</strong></td><td class="mono-cell">0.38.1</td><td>experiment package lock</td></tr><tr><td><strong>@playwright/cli</strong></td><td class="mono-cell">0.1.21</td><td>experiment package lock</td></tr><tr><td><strong>Stagehand</strong></td><td class="mono-cell">3.4.0</td><td>experiment package lock</td></tr><tr><td><strong>Browser Use</strong></td><td class="mono-cell">0.13.10</td><td>isolated Python environment</td></tr><tr><td><strong>chrome-devtools-mcp</strong></td><td class="mono-cell">1.9.0</td><td>experiment package lock</td></tr><tr><td><strong>Jev Ultrafast</strong></td><td class="mono-cell">0.1.0 @ 1231850a0bf1a0c0341fe408ef1668dbbfdfac46</td><td>isolated source checkout</td></tr><tr><td><strong>AXe</strong></td><td class="mono-cell">1.8.0</td><td>pinned release archive</td></tr><tr><td><strong>Maestro</strong></td><td class="mono-cell">2.6.1, Java 21</td><td>installed CLI</td></tr><tr><td><strong>XcodeBuildMCP</strong></td><td class="mono-cell">2.7.0</td><td>installed CLI</td></tr><tr><td><strong>Chromium</strong></td><td class="mono-cell">151.0.7922.34</td><td>dedicated experiment browser</td></tr><tr><td><strong>Codex</strong></td><td class="mono-cell">0.155.1, gpt-6-astra, medium reasoning</td><td>agent run metadata</td></tr><tr><td><strong>Ternary Bonsai 2 27B PTQ1_0</strong></td><td class="mono-cell">revision 6ed5e12bf84b7a63069882c91dd9e9218647d17b, SHA-256 53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3</td><td>pinned model artifact</td></tr><tr><td><strong>Prism llama.cpp</strong></td><td class="mono-cell">0.2.0-dev build 10709 @ 9a9394a895b96003ca842a6041cb28ac49a108f7, archive SHA-256 f9cdf245fb7b832f1996dd776b321d4ae1f23b6d88c380100f636742c3a980ff</td><td>pinned runtime artifact</td></tr><tr><td><strong>Node.js app/build</strong></td><td class="mono-cell">24.21.0</td><td>experiment environment</td></tr><tr><td><strong>npm</strong></td><td class="mono-cell">11.19.1</td><td>experiment environment</td></tr><tr><td><strong>Node.js controller</strong></td><td class="mono-cell">26.9.0</td><td>initial measurement controller</td></tr><tr><td><strong>zod</strong></td><td class="mono-cell">3.25.76</td><td>experiment package lock</td></tr><tr><td><strong>Wrangler</strong></td><td class="mono-cell">4.135.0</td><td>site package lock</td></tr></tbody></table></div><p class="fine-print">These pins make the historical result reproducible. They are not recommendations to avoid newer versions.</p></section>
+      <section class="plain-callout"><h2>What would justify rerunning</h2><p>Rerun when the application journey changes, a candidate has a material new release, the browser or simulator changes, or a five-run screen beats the current reliability and verified-feedback result. Do not rerun the whole catalogue merely because another tool exists.</p></section>
+      <footer><p>Machine-readable records: <a href="/experiments.json">experiments.json</a> and <a href="/versions.json">versions.json</a>.</p></footer>
+    </main>
+  </body>
+</html>

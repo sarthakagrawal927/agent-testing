@@ -8,12 +8,13 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs adapters/vaultwealth/runtime/qualify-agent.test.mjs",
+    "site:render": "node scripts/render-catalog.mjs",
     "validate:vaultwealth": "node bin/agent-testing.mjs validate --manifest adapters/vaultwealth/runtime/shared-benchmark.manifest.json",
     "syntax": "node scripts/check-syntax.mjs",
     "site:dev": "wrangler dev",
     "site:dry-run": "wrangler deploy --dry-run --outdir artifacts/wrangler-dry-run",
     "deploy": "wrangler deploy",
-    "check": "npm run syntax && npm test && npm run validate:vaultwealth && npm run site:dry-run && git diff --check"
+    "check": "npm run site:render && npm run syntax && npm test && npm run validate:vaultwealth && npm run site:dry-run && git diff --check"
   },
   "engines": {
     "node": ">=22"

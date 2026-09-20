@@ -17,10 +17,12 @@ test('public map is agent-first, static and honest about access', async () => {
 });
 
 test('public map ships agent and missing-route surfaces', async () => {
-  const [llms, missing, headers] = await Promise.all([
+  const [llms, missing, headers, toolsPage, experimentsPage] = await Promise.all([
     read('llms.txt'),
     read('404.html'),
     read('_headers'),
+    read('tools.html'),
+    read('experiments.html'),
   ]);
 
   assert.match(llms, /## Start/);
@@ -28,6 +30,38 @@ test('public map ships agent and missing-route surfaces', async () => {
   assert.match(llms, /The workflow and verifier must be separate/);
   assert.match(missing, /Route not found/);
   assert.match(headers, /Content-Security-Policy/);
+  assert.match(toolsPage, /54 tools, labelled honestly/);
+  assert.match(experimentsPage, /What was actually run/);
+  assert.doesNotMatch(toolsPage, /<script\b/i);
+  assert.doesNotMatch(experimentsPage, /<script\b/i);
+});
+
+test('catalogue has broad coverage without presenting research as benchmark evidence', async () => {
+  const [toolsRaw, experimentsRaw, versionsRaw, toolsPage] = await Promise.all([
+    read('tools.json'),
+    read('experiments.json'),
+    read('versions.json'),
+    read('tools.html'),
+  ]);
+  const tools = JSON.parse(toolsRaw);
+  const experiments = JSON.parse(experimentsRaw);
+  const versions = JSON.parse(versionsRaw);
+  const ids = new Set(tools.tools.map((tool) => tool.id));
+  const categories = new Set(tools.tools.map((tool) => tool.category));
+
+  assert.ok(tools.tools.length >= 50);
+  assert.equal(ids.size, tools.tools.length);
+  assert.equal(categories.size, 6);
+  assert.equal(experiments.experiments.length, 8);
+  assert.ok(versions.pins.length >= 15);
+  assert.equal(tools.last_experiment, '2026-09-20');
+  assert.equal(experiments.last_experiment, '2026-09-20');
+
+  for (const tool of tools.tools) {
+    assert.match(tool.url, /^https:\/\//);
+    assert.match(toolsPage, new RegExp(`id="${tool.id}"`));
+    if (tool.evidence === 'researched-only') assert.equal(tool.version, null);
+  }
 });
 
 test('layout has responsive, focus and contrast accommodations', async () => {
@@ -38,4 +72,3 @@ test('layout has responsive, focus and contrast accommodations', async () => {
   assert.match(css, /prefers-contrast: more/);
   assert.match(css, /overflow-x: auto/);
 });
-

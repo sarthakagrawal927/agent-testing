@@ -2,9 +2,9 @@
   "$schema": "fleet.design-review.v1",
   "version": 1,
   "project": "agent-testing",
-  "target": "single-page public benchmark guide",
-  "surfaceMode": "persuade",
-  "mode": "overhaul",
+  "target": "expanded tool catalogue and experiment archive",
+  "surfaceMode": "read",
+  "mode": "iteration",
   "register": "product",
   "context": {
     "product": "PRODUCT.md",
@@ -12,30 +12,21 @@
   },
   "direction": {
     "references": [
-      "Preline Cover Page"
+      "DESIGN.md",
+      "site/index.html",
+      "site/styles.css"
     ],
     "probes": [
-      {
-        "id": "field-manual",
-        "path": "artifacts/design/direction-set-ab.png"
-      },
-      {
-        "id": "benchmark-ledger",
-        "path": "artifacts/design/direction-set-ab.png"
-      },
-      {
-        "id": "terminal-map",
-        "path": "artifacts/design/direction-terminal.png"
-      }
+      "artifacts/design/after-1440.png"
     ],
-    "selected": "field-manual",
-    "approval": "delegated",
-    "before": "not-applicable-new-surface",
+    "selected": "existing-field-guide",
+    "approval": "owner-selected",
+    "before": "artifacts/design/after-1440.png",
     "library": {
       "strategy": "upstream-first",
-      "primary": "preline",
+      "primary": "existing dependency-free CSS",
       "sources": [
-        "https://preline.co/examples/html/cover-page.html"
+        "site/styles.css"
       ],
       "runtime": "none",
       "customReplacement": {
@@ -45,17 +36,17 @@
       }
     },
     "contract": {
-      "purpose": "Help coding agents compare local web and native UI automation choices by measuring verified feedback rather than successful driver execution.",
-      "purposeSource": "PRODUCT.md and PROJECT_STATUS.md",
-      "canonicalPurpose": "Agent Testing helps coding agents and Fleet maintainers compare local UI automation choices through bounded benchmarks and independent correctness verification.",
+      "purpose": "Publish a plain, agent-first evidence map for local web and iOS testing tools.",
+      "purposeSource": "PRODUCT.md",
+      "canonicalPurpose": "Help an agent choose, reproduce and independently verify a testing approach without repeating completed screening.",
       "purposeAlignment": "match",
-      "driftNote": "The canonical Fleet catalog now attributes the private runner and public map to the agent-testing project.",
-      "audience": "Coding agents and Fleet maintainers with access to the private runner repository.",
-      "job": "Expose the exact clone, smoke, adapter, verification, and adoption path before secondary benchmark explanation.",
-      "thesis": "A field manual, not a marketing landing page: linear, quiet, and executable in source order.",
-      "system": "Warm paper surfaces, near-black editorial headings, orange route markers, monospace commands, one reading column, and ordinary semantic links.",
-      "signature": "A numbered clone-to-adopt route whose commands form the page's primary information architecture.",
-      "risk": "The large serif title can dominate a narrow viewport; responsive sizing and a short agent-first eyebrow keep the first command path visible without horizontal overflow."
+      "driftNote": "",
+      "audience": "Coding agents and engineers evaluating local application testing tools.",
+      "job": "Choose a tool by evidence state, inspect the experiment, and replay it when justified.",
+      "thesis": "A simple table and experiment record are more useful than a visual dashboard.",
+      "system": "Existing paper-like field guide, restrained typography, plain tables, no client JavaScript.",
+      "signature": "Evidence labels distinguish benchmarked, screened, setup-blocked and researched-only tools.",
+      "risk": "A long catalogue can imply unsupported equivalence; every entry must expose its evidence state."
     }
   },
   "evidence": {
@@ -82,7 +73,7 @@
       "maximum": 40
     },
     "audit": {
-      "score": 18,
+      "score": 19,
       "maximum": 20
     },
     "unresolved": {
@@ -91,27 +82,25 @@
     },
     "detector": {
       "posture": "advisory",
-      "findings": [
-        "Impeccable was unavailable; manual responsive, contrast, focus, overflow, and source-order review was used."
-      ]
+      "findings": []
     },
     "comprehension": {
       "status": "pass",
-      "reviewer": "fresh-context browser review",
+      "reviewer": "responsive browser review",
       "answers": {
-        "product": "A map and runner for local web and native UI-agent benchmarks.",
-        "audience": "Coding agents and maintainers with repository access.",
-        "value": "Faster feedback that is independently verified as correct.",
-        "mechanism": "Strict manifests run bounded workflows and separate product oracles before summarizing speed, cost, and reliability.",
-        "proof": "The page names the current Vaultwealth screening decisions and three dated measured results with limitations.",
-        "nextAction": "Clone the private repository, run its smoke fixture, then add one product adapter."
+        "product": "A reusable runner and evidence map for local web and iOS testing tools.",
+        "audience": "Coding agents and engineers selecting application-testing tools.",
+        "value": "Avoid repeating completed screening and distinguish tested evidence from documentation research.",
+        "mechanism": "A dated catalogue links each tool to an evidence state, while the experiment page publishes results, limitations, pins and replay commands.",
+        "proof": "The site lists 54 tools, eight experiment groups and exact observed versions from the Vaultwealth run.",
+        "nextAction": "Open the tool catalogue, inspect the relevant experiment, then clone the private runner only if a replay is justified."
       },
       "purposeScore": {
-        "product": 25,
+        "product": 24,
         "audience": 15,
         "value": 15,
         "mechanism": 15,
-        "proof": 14,
+        "proof": 15,
         "nextAction": 14,
         "total": 98
       },
@@ -119,7 +108,7 @@
     }
   },
   "ownerFeedback": {
-    "decision": "delegated",
-    "note": "The owner delegated the choice with 'anything simple would do'; Field Manual was selected as the simplest agent-first direction."
+    "decision": "owner-selected",
+    "note": "Owner rejected the proposed visual directions as over-engineered and requested a very simple, non-sloppy presentation. Preserve the existing field-guide style and add only plain tools and experiments pages."
   }
 }

@@ -13,6 +13,10 @@
     <a class="skip-link" href="#main">Skip to the map</a>
 
     <main id="main" class="page">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/">Map of Agent Testing</a>
+        <span><a href="/tools">Tools</a> · <a href="/experiments">Experiments</a> · <a href="/llms.txt">Agent summary</a></span>
+      </nav>
       <header class="hero">
         <p class="eyebrow">Agent-first field guide</p>
         <h1>The Map of<br>Agent Testing</h1>
@@ -23,6 +27,8 @@
           <strong>Keep Playwright and Maestro as regression baselines.</strong>
           <p>Use adaptive tools for exploration, then verify their outcome independently. No overall replacement has qualified yet.</p>
         </div>
+
+        <p><a href="/tools"><strong>Browse all 54 tools</strong></a> · <a href="/experiments">Read the eight experiment records</a></p>
 
         <p class="access-note"><strong>Access:</strong> this map is public, but the source repository is private. Cloning requires authorized GitHub access.</p>
       </header>
@@ -135,7 +141,9 @@ node bin/agent-testing.mjs summarize \
             <p>At least 2× faster, or 50% less model usage without slower execution—plus no missed seeded defects and no observed reliability regression.</p>
           </div>
           <nav class="actions" aria-label="Further reading">
-            <a class="primary" href="https://github.com/sarthakagrawal927/agent-testing">Open the private repository <span aria-hidden="true">→</span></a>
+            <a class="primary" href="/tools">Open the full tool catalogue <span aria-hidden="true">→</span></a>
+            <a href="/experiments">See results, limits and exact version pins</a>
+            <a href="https://github.com/sarthakagrawal927/agent-testing">Open the private repository</a>
             <a href="https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md">Read the full implementation guide</a>
             <a href="/llms.txt">Agent-readable summary</a>
           </nav>
@@ -144,7 +152,7 @@ node bin/agent-testing.mjs summarize \
 
       <footer>
         <p>Built for verified feedback, not automation theatre.</p>
-        <p>Last benchmark snapshot: 20 September 2026.</p>
+        <p>Last experiment: 20 September 2026. Catalogue reviewed: 20 September 2026.</p>
       </footer>
     </main>
   </body>

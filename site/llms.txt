@@ -4,7 +4,16 @@
 
 Repository: https://github.com/sarthakagrawal927/agent-testing
 Live map: https://browser-agents.sarthakagrawal.dev
+Tool catalogue: https://browser-agents.sarthakagrawal.dev/tools
+Experiment record: https://browser-agents.sarthakagrawal.dev/experiments
+Machine-readable tools: https://browser-agents.sarthakagrawal.dev/tools.json
+Machine-readable experiments: https://browser-agents.sarthakagrawal.dev/experiments.json
+Exact observed pins: https://browser-agents.sarthakagrawal.dev/versions.json
 Access: The repository is private. Cloning requires authorized GitHub access.
+
+Last experiment: 2026-09-20
+Catalogue reviewed: 2026-09-20
+Coverage: 54 tools in six categories. Evidence states are benchmarked, screened, setup-blocked, and researched-only.
 
 ## Start
 
@@ -31,6 +40,25 @@ The workflow and verifier must be separate. A successful driver exit is not proo
 - Targeted iOS inspection/action: AXe or XcodeBuildMCP, without assuming standalone reliability.
 
 No overall replacement has qualified. Adopt a candidate only after it is at least 2x faster, or uses at least 50% less model without slower execution, with no missed seeded defects and no observed reliability regression.
+
+## Exact observed versions
+
+- Playwright 1.62.1
+- agent-browser 0.38.1
+- @playwright/cli 0.1.21
+- Stagehand 3.4.0
+- Browser Use 0.13.10
+- chrome-devtools-mcp 1.9.0
+- Jev 0.1.0 at commit 1231850a0bf1a0c0341fe408ef1668dbbfdfac46
+- AXe 1.8.0
+- Maestro 2.6.1 with Java 21
+- XcodeBuildMCP 2.7.0
+- Chromium 151.0.7922.34
+- Codex 0.155.1 using gpt-6-astra at medium reasoning
+- Bonsai model revision 6ed5e12bf84b7a63069882c91dd9e9218647d17b
+- Prism llama.cpp 0.2.0-dev build 10709 at commit 9a9394a895b96003ca842a6041cb28ac49a108f7
+
+See versions.json for hashes and environment pins. Unrun catalogue entries deliberately have no version claim.
 
 Detailed guide: https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md
 Full report: https://github.com/sarthakagrawal927/agent-testing/blob/main/adapters/vaultwealth/runtime/REPORT.md
