@@ -4,10 +4,9 @@ Browser Agent Testing helps coding agents and Fleet maintainers compare local we
 native UI automation choices by measuring verified feedback, not merely
 successful driver execution.
 
-The completed experiment's public surface is a compact map for agents with repository access. Its job
-is to expose the exact clone, smoke, adapter, verification, and adoption path
-while preserving the experiment's limitations.
+The completed experiment's public surface is a compact map for coding agents.
+Its job is to expose the exact clone, smoke, adapter, verification, and
+adoption path while preserving the experiment's limitations.
 
-The retained runner remains private internal tooling. The public page contains no
-credentials, production data, application hooks, or downloadable repository
-archive.
+The retained runner and reproducibility artifacts are public. They contain no
+credentials, production data, or production application hooks.

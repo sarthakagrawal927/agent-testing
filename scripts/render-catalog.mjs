@@ -102,7 +102,7 @@ npm test
 npm run validate:vaultwealth
 
 # Read exact setup and replay commands
-open adapters/vaultwealth/runtime/README.md</code></pre><p class="fine-print">The repository is private. Product adapters use local or disposable seeded targets only.</p></section>
+open adapters/vaultwealth/runtime/README.md</code></pre><p class="fine-print">The source repository is public. Product adapters must still use local or disposable seeded targets only.</p></section>
       <div class="experiment-list">${experimentSections}</div>
       <section class="catalog-section" aria-labelledby="versions"><h2 id="versions">Exact observed versions</h2><p>${escapeHtml(versions.machine)}. ${escapeHtml(versions.browser)}. ${escapeHtml(versions.simulator)}.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Exact observed version pins"><table class="catalog-table"><thead><tr><th>Tool or runtime</th><th>Exact observed pin</th><th>Recorded from</th></tr></thead><tbody>${versionRows}</tbody></table></div><p class="fine-print">These pins make the historical result reproducible. They are not recommendations to avoid newer versions.</p></section>
       <section class="plain-callout"><h2>What would justify rerunning</h2><p>Rerun when the application journey changes, a candidate has a material new release, the browser or simulator changes, or a five-run screen beats the current reliability and verified-feedback result. Do not rerun the whole catalogue merely because another tool exists.</p></section>

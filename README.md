@@ -1,6 +1,6 @@
 # Local agent-testing benchmark runner
 
-This private repository owns the reusable, credential-free orchestration layer
+This public repository owns the reusable, credential-free orchestration layer
 for local application-agent benchmarks. Product-specific startup, seed/reset,
 journeys, selectors, defect toggles, correctness oracles, reports, and isolated
 worktree patches live under `adapters/`; they do not need to be merged into the

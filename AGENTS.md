@@ -1,7 +1,7 @@
 ## Shared Fleet standard
 
-Also read and follow `../AGENTS.md`. This repository is a private internal
-support tool, not a product application.
+Also read and follow `../AGENTS.md`. This repository is a public completed
+experiment and support tool, not a product application.
 
 ## Project
 

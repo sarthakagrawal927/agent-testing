@@ -4,14 +4,16 @@ import test from 'node:test';
 
 const read = (name) => readFile(new URL(`../site/${name}`, import.meta.url), 'utf8');
 
-test('public map is agent-first, static and honest about access', async () => {
+test('public map is agent-first, static and links to its public source', async () => {
   const html = await read('index.html');
 
   assert.match(html, /<main id="main"/);
   assert.match(html, /The Map of<br>Browser Agent Testing/);
   assert.match(html, /Completed browser-agent experiment/);
   assert.match(html, /gh repo clone sarthakagrawal927\/agent-testing/);
-  assert.match(html, /source repository is private/i);
+  assert.match(html, /experiment records, and replay instructions are public/i);
+  assert.match(html, /Open the source repository/i);
+  assert.doesNotMatch(html, /private repository/i);
   assert.match(html, /A zero exit code is not a correct product state/);
   assert.match(html, /No overall replacement has qualified yet/);
   assert.doesNotMatch(html, /<script\b/i);

@@ -10,7 +10,7 @@ Additional local-first candidates and current recommendations are in
 
 ## Standalone runner adapter
 
-The reusable, dependency-free orchestration layer lives in the private
+The reusable, dependency-free orchestration layer lives in the public
 `agent-testing` repository. This runtime keeps the Vaultwealth-specific
 journeys, fixture backend, defect toggles, UI assertions, and evidence here.
 `shared-benchmark.manifest.json` is the first product adapter: it wraps the
