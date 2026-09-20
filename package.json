@@ -13,7 +13,7 @@
     "syntax": "node scripts/check-syntax.mjs",
     "site:dev": "wrangler dev",
     "site:dry-run": "wrangler deploy --dry-run --outdir artifacts/wrangler-dry-run",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy --tag $(git rev-parse HEAD)",
     "check": "npm run site:render && npm run syntax && npm test && npm run validate:vaultwealth && npm run site:dry-run && git diff --check"
   },
   "engines": {

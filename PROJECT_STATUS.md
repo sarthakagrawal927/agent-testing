@@ -1,10 +1,10 @@
-# Agent Testing — PROJECT STATUS
+# Browser Agent Testing — PROJECT STATUS
 
 Last updated: 2026-09-20
 
 ## Why / What
 
-Private internal tooling for reproducible, local-first web and native app-agent benchmarks with independent correctness verification.
+Completed experiment for reproducible, local-first web and native app-agent benchmarks with independent correctness verification. The live evidence map and private runner are retained without an active expansion roadmap.
 
 **Users:** Fleet owner and coding agents.
 
@@ -27,14 +27,15 @@ Private internal tooling for reproducible, local-first web and native app-agent 
 ## Timeline
 
 - 2026-09-20 — public map expanded to a sourced 54-tool catalogue, eight experiment records, exact observed version pins, and machine-readable JSON; catalogue research and the last executed benchmark are dated separately.
-- 2026-09-20 — agent-first Map of Agent Testing deployed as a static Cloudflare Worker at `browser-agents.sarthakagrawal.dev`, with the workers.dev fallback retained; canonical Fleet ownership recorded under this project.
+- 2026-09-20 — owner marked Browser Agent Testing a completed experiment. The live evidence map and private reproducibility artifacts remain available; no ongoing benchmark treadmill or general-purpose framework is planned.
+- 2026-09-20 — agent-first Map of Browser Agent Testing deployed as a static Cloudflare Worker at `browser-agents.sarthakagrawal.dev`, with the workers.dev fallback retained; canonical Fleet ownership recorded under this project.
 - 2026-09-20 — standalone private repository created; generic runner and Vaultwealth experiment extracted from product repositories.
 
 ## Products
 
 - `agent-testing` CLI and receipt contract.
 - Vaultwealth web and iOS benchmark adapter.
-- Public, read-only Map of Agent Testing for agents and authorized maintainers.
+- Public, read-only Map of Browser Agent Testing for agents and authorized maintainers.
 
 ## Features (shipped)
 
@@ -47,7 +48,7 @@ Private internal tooling for reproducible, local-first web and native app-agent 
 - Public `tools.json`, `experiments.json`, and `versions.json` surfaces for agents.
 - Evidence labels keep benchmarked and screened tools separate from setup-blocked and researched-only entries.
 
-## Todo / Planned / Deferred / Blocked
+## Deferred
 
-1. Add another product adapter only after the Vaultwealth extraction is stable.
-2. Package a Claude/Codex skill only after a benchmark candidate meets the adoption threshold.
+- No active roadmap. Add another product adapter only if a concrete future product needs a fresh comparison.
+- Package a Claude/Codex skill only if a future benchmark candidate meets the documented adoption threshold.

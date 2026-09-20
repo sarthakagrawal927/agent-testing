@@ -1,5 +1,6 @@
 {
-  "title": "Map of Agent Testing tool catalogue",
+  "title": "Map of Browser Agent Testing tool catalogue",
+  "status": "completed-experiment",
   "catalogue_reviewed": "2026-09-20",
   "last_experiment": "2026-09-20",
   "scope": "Relevant tools for local web and iOS application testing, grouped by job. This is a dated coverage snapshot, not a claim that every testing product is included.",
