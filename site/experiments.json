@@ -1,5 +1,6 @@
 {
   "last_experiment": "2026-09-20",
+  "status": "completed-experiment",
   "application": "Vaultwealth web and iOS Simulator against seeded, non-production fixtures",
   "decision": "Keep Playwright and Maestro as regression baselines. Use adaptive tools for exploration with an independent verifier.",
   "experiments": [

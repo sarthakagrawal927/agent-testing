@@ -8,6 +8,8 @@ test('public map is agent-first, static and honest about access', async () => {
   const html = await read('index.html');
 
   assert.match(html, /<main id="main"/);
+  assert.match(html, /The Map of<br>Browser Agent Testing/);
+  assert.match(html, /Completed browser-agent experiment/);
   assert.match(html, /gh repo clone sarthakagrawal927\/agent-testing/);
   assert.match(html, /source repository is private/i);
   assert.match(html, /A zero exit code is not a correct product state/);
@@ -53,6 +55,8 @@ test('catalogue has broad coverage without presenting research as benchmark evid
   assert.equal(ids.size, tools.tools.length);
   assert.equal(categories.size, 6);
   assert.equal(experiments.experiments.length, 8);
+  assert.equal(tools.status, 'completed-experiment');
+  assert.equal(experiments.status, 'completed-experiment');
   assert.ok(versions.pins.length >= 15);
   assert.equal(tools.last_experiment, '2026-09-20');
   assert.equal(experiments.last_experiment, '2026-09-20');

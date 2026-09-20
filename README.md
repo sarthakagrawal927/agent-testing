@@ -16,7 +16,7 @@ summarizes the current results and shows how to clone the repository, run the
 smoke fixture, and add another product adapter.
 
 The public, agent-first summary is served from
-[The Map of Agent Testing](https://browser-agents.sarthakagrawal.dev)
+[The Map of Browser Agent Testing](https://browser-agents.sarthakagrawal.dev)
 by Cloudflare Workers Static Assets. Use `npm run site:dev` for a local preview
 and `npm run deploy` for the configured `map-of-agent-testing` Worker.
 

@@ -1,4 +1,4 @@
-# The Map of Agent Testing
+# The Map of Browser Agent Testing
 
 > A command-first map for coding agents comparing local web and native UI testing tools with independent verification.
 
@@ -13,6 +13,7 @@ Access: The repository is private. Cloning requires authorized GitHub access.
 
 Last experiment: 2026-09-20
 Catalogue reviewed: 2026-09-20
+Status: completed experiment; retained without an active expansion roadmap.
 Coverage: 54 tools in six categories. Evidence states are benchmarked, screened, setup-blocked, and researched-only.
 
 ## Start

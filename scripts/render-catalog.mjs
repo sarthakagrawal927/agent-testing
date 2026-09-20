@@ -22,7 +22,7 @@ const layout = ({ title, description, body }) => `<!doctype html>
     <a class="skip-link" href="#main">Skip to content</a>
     <main id="main" class="page wide-page">
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/">Map of Agent Testing</a>
+        <a href="/">Browser Agent Testing</a>
         <span><a href="/tools">Tools</a> · <a href="/experiments">Experiments</a> · <a href="/llms.txt">Agent summary</a></span>
       </nav>
       ${body}
@@ -56,11 +56,11 @@ const toolSections = [...categories.entries()].map(([category, entries]) => `
       </section>`).join('');
 
 const toolsHtml = layout({
-  title: 'Tools — Map of Agent Testing',
+  title: 'Tools — Map of Browser Agent Testing',
   description: 'A dated, evidence-labelled catalogue of web, iOS, visual and agent testing tools.',
   body: `
       <header class="plain-header">
-        <p class="eyebrow">Tool catalogue</p>
+        <p class="eyebrow">Completed experiment · tool catalogue</p>
         <h1>54 tools, labelled honestly.</h1>
         <p class="lede">A tool appears here because it is relevant to local web or iOS testing. Only entries marked benchmarked or screened were run in this experiment.</p>
         <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>20 September 2026</dd></div><div><dt>Last experiment</dt><dd>20 September 2026</dd></div></dl>
@@ -84,11 +84,11 @@ const experimentSections = experiments.experiments.map((experiment, index) => `
 const versionRows = versions.pins.map((pin) => `<tr><td><strong>${escapeHtml(pin.name)}</strong></td><td class="mono-cell">${escapeHtml(pin.version)}</td><td>${escapeHtml(pin.source)}</td></tr>`).join('');
 
 const experimentsHtml = layout({
-  title: 'Experiments — Map of Agent Testing',
+  title: 'Experiments — Map of Browser Agent Testing',
   description: 'Vaultwealth agent-testing benchmark results, limitations, version pins and replay paths.',
   body: `
       <header class="plain-header">
-        <p class="eyebrow">Experiment record</p>
+        <p class="eyebrow">Completed experiment · experiment record</p>
         <h1>What was actually run.</h1>
         <p class="lede">Vaultwealth web and iOS Simulator, seeded local fixtures, one Mac, bounded runs, and an independent correctness oracle.</p>
         <dl class="dates"><div><dt>Last experiment</dt><dd>20 September 2026</dd></div><div><dt>Current decision</dt><dd>Keep Playwright + Maestro</dd></div></dl>
