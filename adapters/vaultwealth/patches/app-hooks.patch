@@ -1,0 +1,361 @@
+diff --git a/src/hooks/use-mocks-ready.experiment.test.ts b/src/hooks/use-mocks-ready.experiment.test.ts
+new file mode 100644
+index 000000000..db15ad051
+--- /dev/null
++++ b/src/hooks/use-mocks-ready.experiment.test.ts
+@@ -0,0 +1,73 @@
++let mockEnabled = false;
++let mockEffect: (() => void) | undefined;
++const mockSetReady = jest.fn();
++const mockStart = jest.fn();
++
++jest.mock('config', () => ({
++  get ENABLE_MOCKS() {
++    return mockEnabled;
++  },
++}));
++jest.mock('react', () => ({
++  useState: (initial: boolean) => [initial, mockSetReady],
++  useEffect: (effect: () => void) => {
++    mockEffect = effect;
++  },
++}));
++jest.mock('mocks/bootstrap', () => ({ enableMocking: () => mockStart() }));
++
++function initialGate(injectStartup = false) {
++  let gate!: (start?: () => Promise<void>) => boolean;
++  jest.isolateModules(() => {
++    gate = jest.requireActual('./use-mocks-ready').useMocksReady;
++  });
++  return gate(injectStartup ? mockStart : undefined);
++}
++
++describe('experiment mock readiness gate', () => {
++  beforeEach(() => {
++    jest.useFakeTimers();
++    mockSetReady.mockReset();
++    mockStart.mockReset().mockResolvedValue(undefined);
++    mockEffect = undefined;
++    mockEnabled = false;
++    delete process.env.EXPO_PUBLIC_TESTING_EXPERIMENT;
++    jest.spyOn(console, 'error').mockImplementation(() => {});
++  });
++  afterEach(() => {
++    jest.useRealTimers();
++    jest.restoreAllMocks();
++    delete process.env.EXPO_PUBLIC_TESTING_EXPERIMENT;
++  });
++
++  it('keeps normal non-mock builds open without starting mocks', () => {
++    expect(initialGate()).toBe(true);
++    mockEffect?.();
++    expect(mockStart).not.toHaveBeenCalled();
++  });
++  it('fails closed when experiment and mock flags disagree', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    expect(initialGate()).toBe(false);
++    mockEffect?.();
++    await jest.runAllTimersAsync();
++    expect(mockSetReady).not.toHaveBeenCalled();
++  });
++  it('fails closed on experiment interceptor startup rejection', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    mockEnabled = true;
++    mockStart.mockRejectedValue(new Error('interceptor failed'));
++    expect(initialGate(true)).toBe(false);
++    mockEffect?.();
++    await jest.runAllTimersAsync();
++    expect(mockSetReady).not.toHaveBeenCalled();
++  });
++  it('opens only after successful experiment startup', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    mockEnabled = true;
++    expect(initialGate(true)).toBe(false);
++    mockEffect?.();
++    await jest.runAllTimersAsync();
++    expect(console.error).not.toHaveBeenCalled();
++    expect(mockSetReady).toHaveBeenCalledWith(true);
++  });
++});
+diff --git a/src/hooks/use-mocks-ready.ts b/src/hooks/use-mocks-ready.ts
+index ae8e670e6..8891826dc 100644
+--- a/src/hooks/use-mocks-ready.ts
++++ b/src/hooks/use-mocks-ready.ts
+@@ -1,25 +1,36 @@
+ import { ENABLE_MOCKS } from 'config';
+ import { useEffect, useState } from 'react';
+ 
++const TESTING_EXPERIMENT = process.env.EXPO_PUBLIC_TESTING_EXPERIMENT === 'true';
++
+ const enableMocking: () => Promise<void> = ENABLE_MOCKS
+   ? () => import('mocks/bootstrap').then((m) => m.enableMocking())
+-  : () => Promise.resolve();
++  : () => (TESTING_EXPERIMENT ? Promise.reject(new Error('Testing experiment requires mocks')) : Promise.resolve());
+ 
+ // Must not start closed: `expo export`'s pre-render never runs effects, so a false
+ // initial value would pre-render every page as an empty shell.
+-export const useMocksReady = (): boolean => {
+-  const [mocksReady, setMocksReady] = useState(!ENABLE_MOCKS);
++export const useMocksReady = (startMocking: () => Promise<void> = enableMocking): boolean => {
++  const [mocksReady, setMocksReady] = useState(!ENABLE_MOCKS && !TESTING_EXPERIMENT);
+ 
+   useEffect(() => {
+     if (mocksReady) return;
+     let active = true;
+-    void enableMocking().finally(() => {
+-      if (active) setMocksReady(true);
+-    });
++    void startMocking().then(
++      () => {
++        if (active) setMocksReady(true);
++      },
++      (error: unknown) => {
++        if (TESTING_EXPERIMENT) {
++          console.error('Testing experiment failed closed: mock transport unavailable', error);
++          return;
++        }
++        if (active) setMocksReady(true);
++      },
++    );
+     return () => {
+       active = false;
+     };
+-  }, [mocksReady]);
++  }, [mocksReady, startMocking]);
+ 
+   return mocksReady;
+ };
+diff --git a/src/mocks/experiment-reset.native.ts b/src/mocks/experiment-reset.native.ts
+new file mode 100644
+index 000000000..59d5bb6e8
+--- /dev/null
++++ b/src/mocks/experiment-reset.native.ts
+@@ -0,0 +1,17 @@
++import { Linking } from 'react-native';
++
++export async function installExperimentReset() {
++  if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT !== 'true') return;
++  const { queryClient } = await import('../query-client');
++  const global = globalThis as typeof globalThis & { __vaultExperimentReset?: { remove(): void } };
++  global.__vaultExperimentReset?.remove();
++  global.__vaultExperimentReset = Linking.addEventListener('url', ({ url }) => {
++    const parsed = new URL(url);
++    const epoch = parsed.searchParams.get('__testingReset');
++    if (parsed.protocol !== 'vault-dev:' || !epoch || !/^\d+$/.test(epoch)) return;
++    // Reset cached fixture data only. Authentication and all tested form/search
++    // interactions still go through the ordinary app UI.
++    queryClient.clear();
++    void fetch(`http://127.0.0.1:18791/cache-reset/ack?epoch=${epoch}`, { method: 'POST' }).catch(() => {});
++  });
++}
+diff --git a/src/mocks/experiment-transport.test.ts b/src/mocks/experiment-transport.test.ts
+new file mode 100644
+index 000000000..959ce4ef5
+--- /dev/null
++++ b/src/mocks/experiment-transport.test.ts
+@@ -0,0 +1,52 @@
++jest.mock('msw', () => ({
++  bypass: (request: Request) => request,
++  http: { all: jest.fn() },
++  HttpResponse: {},
++  passthrough: jest.fn(),
++}));
++
++import { experimentTransport, verifyExperimentTransport } from './experiment-transport';
++
++describe('isolated experiment transport handshake', () => {
++  const originalFetch = globalThis.fetch;
++  afterEach(() => {
++    globalThis.fetch = originalFetch;
++    delete process.env.EXPO_PUBLIC_TESTING_EXPERIMENT;
++    delete (globalThis as { __vaultExperimentReady?: boolean }).__vaultExperimentReady;
++  });
++
++  it('does nothing in ordinary mock builds', async () => {
++    globalThis.fetch = jest.fn();
++    expect(experimentTransport()).toBeNull();
++    await verifyExperimentTransport();
++    expect(globalThis.fetch).not.toHaveBeenCalled();
++  });
++
++  it('opens readiness only after the fixture echoes its challenge', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    globalThis.fetch = jest.fn(async (url) => ({
++      json: async () => ({ kind: 'vault-testing-fixture', nonce: new URL(String(url)).searchParams.get('nonce') }),
++    })) as unknown as typeof fetch;
++    await verifyExperimentTransport();
++    expect((globalThis as { __vaultExperimentReady?: boolean }).__vaultExperimentReady).toBe(true);
++    expect(String((globalThis.fetch as jest.Mock).mock.calls[0][0])).toMatch(/^http:\/\/vault-testing\.invalid\//);
++  });
++
++  it('rejects a response from anything other than the fixture', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    globalThis.fetch = jest.fn(async () => ({
++      json: async () => ({ kind: 'not-fixture', nonce: 'wrong' }),
++    })) as unknown as typeof fetch;
++    await expect(verifyExperimentTransport()).rejects.toThrow('Fixture handshake failed');
++    expect((globalThis as { __vaultExperimentReady?: boolean }).__vaultExperimentReady).not.toBe(true);
++  });
++
++  it('does not announce readiness after a network failure', async () => {
++    process.env.EXPO_PUBLIC_TESTING_EXPERIMENT = 'true';
++    globalThis.fetch = jest.fn(async () => {
++      throw new Error('offline');
++    });
++    await expect(verifyExperimentTransport()).rejects.toThrow('offline');
++    expect((globalThis as { __vaultExperimentReady?: boolean }).__vaultExperimentReady).not.toBe(true);
++  });
++});
+diff --git a/src/mocks/experiment-transport.ts b/src/mocks/experiment-transport.ts
+new file mode 100644
+index 000000000..782d45e7f
+--- /dev/null
++++ b/src/mocks/experiment-transport.ts
+@@ -0,0 +1,46 @@
++import { bypass, http, HttpResponse, passthrough } from 'msw';
++
++// Opt-in loopback transport used only by the local driver experiment.
++export const experimentTransport = () => {
++  if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT !== 'true') return null;
++  return [
++    http.all('*', async ({ request }) => {
++      const url = new URL(request.url);
++      if (!url.pathname.startsWith('/api/') && ['127.0.0.1', 'localhost'].includes(url.hostname)) return passthrough();
++      if (!url.pathname.startsWith('/api/')) return HttpResponse.json({});
++      const response = await fetch(
++        bypass(
++          new Request(`http://127.0.0.1:18791${url.pathname}${url.search}`, {
++            method: request.method,
++            headers: { 'Content-Type': 'application/json', Authorization: request.headers.get('authorization') ?? '' },
++            ...(request.method !== 'GET' && request.method !== 'HEAD' ? { body: await request.text() } : {}),
++          }),
++        ),
++      );
++      return new HttpResponse(await response.text(), {
++        status: response.status,
++        headers: { 'Content-Type': response.headers.get('content-type') ?? 'application/json' },
++      });
++    }),
++  ];
++};
++
++export async function verifyExperimentTransport() {
++  if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT !== 'true') return;
++  const nonce = String(Math.random());
++  const controller = new AbortController();
++  // This non-React request owns its global timer and clears it in finally.
++  const timer = globalThis.setTimeout(() => controller.abort(), 5000);
++  try {
++    // .invalid can never be a production destination. Only the interceptor can
++    // route this challenge to the loopback fixture and return the matching nonce.
++    const response = await fetch(`http://vault-testing.invalid/api/experiment/ping?nonce=${nonce}`, {
++      signal: controller.signal,
++    });
++    const result = await response.json();
++    if (result.kind !== 'vault-testing-fixture' || result.nonce !== nonce) throw new Error('Fixture handshake failed');
++    Object.assign(globalThis, { __vaultExperimentReady: true });
++  } finally {
++    clearTimeout(timer);
++  }
++}
+diff --git a/src/mocks/interceptor.native.ts b/src/mocks/interceptor.native.ts
+index f23143953..e3704ee2c 100644
+--- a/src/mocks/interceptor.native.ts
++++ b/src/mocks/interceptor.native.ts
+@@ -1,8 +1,23 @@
+ import { setupServer } from 'msw/native';
++import { experimentTransport, verifyExperimentTransport } from './experiment-transport';
+ import handlers from './handlers';
+ import type { StartInterceptor } from './interceptor-types';
+ 
+ // `@mswjs/interceptors` patching fetch/XHR, since a service worker has nowhere to run.
+ export const startInterceptor: StartInterceptor = async (options) => {
+-  setupServer(...handlers).listen(options);
++  if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT === 'true') {
++    const { default: NetInfo } = await import('@react-native-community/netinfo');
++    NetInfo.configure({
++      useNativeReachability: false,
++      reachabilityUrl: 'http://127.0.0.1:18791/health',
++      reachabilityMethod: 'GET',
++      reachabilityTest: async (response) => response.status === 200,
++    });
++  }
++  setupServer(...(experimentTransport() ?? handlers)).listen(options);
++  await verifyExperimentTransport();
++  if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT === 'true') {
++    const { installExperimentReset } = await import('./experiment-reset.native');
++    await installExperimentReset();
++  }
+ };
+diff --git a/src/mocks/interceptor.ts b/src/mocks/interceptor.ts
+index 1e55bc355..3befc7471 100644
+--- a/src/mocks/interceptor.ts
++++ b/src/mocks/interceptor.ts
+@@ -1,7 +1,9 @@
+ import { setupWorker } from 'msw/browser';
++import { experimentTransport, verifyExperimentTransport } from './experiment-transport';
+ import handlers from './handlers';
+ import type { StartInterceptor } from './interceptor-types';
+ 
+ export const startInterceptor: StartInterceptor = async (options) => {
+-  await setupWorker(...handlers).start(options);
++  await setupWorker(...(experimentTransport() ?? handlers)).start(options);
++  await verifyExperimentTransport();
+ };
+diff --git a/src/mocks/use-experiment-visual-fault.ts b/src/mocks/use-experiment-visual-fault.ts
+new file mode 100644
+index 000000000..80d945dd0
+--- /dev/null
++++ b/src/mocks/use-experiment-visual-fault.ts
+@@ -0,0 +1,23 @@
++import { useEffect, useState } from 'react';
++
++// Deliberate, opt-in visual mutation on the isolated test build only.
++export function useExperimentVisualFault() {
++  const [clipped, setClipped] = useState(false);
++  useEffect(() => {
++    if (process.env.EXPO_PUBLIC_TESTING_EXPERIMENT !== 'true' || process.env.EXPO_PUBLIC_ENABLE_MOCKS !== 'true')
++      return;
++    let active = true;
++    void fetch('http://127.0.0.1:18791/health')
++      .then((response) => response.json())
++      .then((state) => {
++        if (active) setClipped(state.fault === 'clipped');
++      })
++      .catch(() => {
++        /* The mock readiness gate handles unavailable transport. */
++      });
++    return () => {
++      active = false;
++    };
++  }, []);
++  return clipped;
++}
+diff --git a/src/pages/login/steps/01-email.native.tsx b/src/pages/login/steps/01-email.native.tsx
+index 46affbe0c..74298357a 100644
+--- a/src/pages/login/steps/01-email.native.tsx
++++ b/src/pages/login/steps/01-email.native.tsx
+@@ -7,6 +7,7 @@ import { useSyncFormValid } from 'hooks/useSyncFormValid';
+ import { useTouched } from 'hooks/useTouched';
+ import { useVaultNavigate } from 'hooks/useVaultNavigate';
+ import { useTranslate } from 'i18n/use-translate';
++import { useExperimentVisualFault } from 'mocks/use-experiment-visual-fault';
+ import { extractErrorsFromSchema } from 'pages/kyc-v2/utils';
+ import { DisclaimerContent } from 'pages/login/components/disclaimer-content';
+ import { SwitchAccountsCTA } from 'pages/login/components/switch-accounts-cta.native';
+@@ -25,6 +26,7 @@ import type { LoginV4StepProps } from '../useLoginFlow';
+ 
+ export default function LoginV4EmailStep({ loading, data, setData, setFormValid, onContinue }: LoginV4StepProps) {
+   const t = useTranslate();
++  const experimentClipped = useExperimentVisualFault();
+ 
+   const navigate = useVaultNavigate();
+   const nativeAuth = useNativeAuth();
+@@ -111,6 +113,7 @@ export default function LoginV4EmailStep({ loading, data, setData, setFormValid,
+           <View className="mt-auto mb-9 gap-6">
+             <ButtonPrimary
+               testID="login-email-continue"
++              style={experimentClipped ? { minWidth: 0, width: 60, overflow: 'hidden' } : undefined}
+               buttonType="action"
+               size="large"
+               loading={loading}

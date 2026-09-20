@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "fleet.agent-testing.manifest.v1",
+  "id": "vaultwealth.web.search.playwright",
+  "platform": "web",
+  "journey": "dynamic-search",
+  "candidate": "playwright-saved",
+  "sample": "screening",
+  "workingDirectory": "../..",
+  "runs": { "warm": 5, "cold": 0 },
+  "phases": {
+    "workflow": {
+      "command": [
+        "node",
+        "local-agent-eval/fast-testing/shared-benchmark-adapter.mjs",
+        "workflow",
+        "search",
+        "playwright",
+        "clean"
+      ],
+      "timeoutMs": 120000
+    },
+    "verification": {
+      "command": [
+        "node",
+        "local-agent-eval/fast-testing/shared-benchmark-adapter.mjs",
+        "verify",
+        "search",
+        "playwright",
+        "clean"
+      ],
+      "timeoutMs": 10000
+    }
+  }
+}

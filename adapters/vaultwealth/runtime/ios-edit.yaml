@@ -1,0 +1,22 @@
+appId: com.vaultwealth.app-development
+---
+- tapOn: '100,000(\.00)?'
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn:
+    text: '100,000'
+    point: '99%,50%'
+- eraseText: 7
+- inputText: '75000'
+- assertVisible: '75,000'
+- takeScreenshot: ${EVIDENCE}/entered
+- tapOn: 'Updated: .*'
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible: '75,000.00'
+- tapOn:
+    id: edit-asset-save
+- extendedWaitUntil:
+    notVisible:
+      id: edit-asset-save
+    timeout: 10000

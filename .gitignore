@@ -1,0 +1,18 @@
+node_modules/
+coverage/
+.DS_Store
+.env*
+*.log
+
+# Benchmark runtime outputs and isolated third-party installs.
+artifacts/
+adapters/*/runtime/artifacts/
+adapters/*/runtime/__pycache__/
+adapters/*/runtime/tools/node_modules/
+adapters/*/runtime/tools/axe/
+adapters/*/runtime/tools/*.tar.gz
+adapters/*/runtime/tools/bonsai/models/
+adapters/*/runtime/tools/bonsai/runtime/
+adapters/*/runtime/tools/browser-use-py312/
+adapters/*/runtime/tools/browser-use-venv/
+adapters/*/runtime/tools/jev-ultrafast/

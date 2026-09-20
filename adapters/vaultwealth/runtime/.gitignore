@@ -1,0 +1,10 @@
+tools/node_modules/
+tools/axe/
+tools/*.tar.gz
+tools/bonsai/models/
+tools/bonsai/runtime/
+tools/browser-use-py312/
+tools/browser-use-venv/
+tools/jev-ultrafast/
+artifacts/
+__pycache__/
