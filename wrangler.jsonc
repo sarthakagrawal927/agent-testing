@@ -2,6 +2,13 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "map-of-agent-testing",
   "compatibility_date": "2026-09-20",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "browser-agents.sarthakagrawal.dev",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "./site",
     "not_found_handling": "404-page",
@@ -19,4 +26,3 @@
     }
   }
 }
-

@@ -26,7 +26,7 @@ Private internal tooling for reproducible, local-first web and native app-agent 
 
 ## Timeline
 
-- 2026-09-20 — agent-first Map of Agent Testing deployed as a static Cloudflare Worker at `map-of-agent-testing.sarthakagrawal927.workers.dev`; canonical Fleet ownership recorded under this project.
+- 2026-09-20 — agent-first Map of Agent Testing deployed as a static Cloudflare Worker at `browser-agents.sarthakagrawal.dev`, with the workers.dev fallback retained; canonical Fleet ownership recorded under this project.
 - 2026-09-20 — standalone private repository created; generic runner and Vaultwealth experiment extracted from product repositories.
 
 ## Products
