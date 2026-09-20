@@ -4,7 +4,7 @@ Last updated: 2026-09-20
 
 ## Why / What
 
-Completed experiment for reproducible, local-first web and native app-agent benchmarks with independent correctness verification. The live evidence map and private runner are retained without an active expansion roadmap.
+Completed experiment for reproducible, local-first web and native app-agent benchmarks with independent correctness verification. The live evidence map and public runner are retained without an active expansion roadmap.
 
 **Users:** Fleet owner and coding agents.
 
@@ -27,15 +27,15 @@ Completed experiment for reproducible, local-first web and native app-agent benc
 ## Timeline
 
 - 2026-09-20 — public map expanded to a sourced 54-tool catalogue, eight experiment records, exact observed version pins, and machine-readable JSON; catalogue research and the last executed benchmark are dated separately.
-- 2026-09-20 — owner marked Browser Agent Testing a completed experiment. The live evidence map and private reproducibility artifacts remain available; no ongoing benchmark treadmill or general-purpose framework is planned.
+- 2026-09-20 — owner marked Browser Agent Testing a completed experiment. The live evidence map and public reproducibility artifacts remain available; no ongoing benchmark treadmill or general-purpose framework is planned.
 - 2026-09-20 — agent-first Map of Browser Agent Testing deployed as a static Cloudflare Worker at `browser-agents.sarthakagrawal.dev`, with the workers.dev fallback retained; canonical Fleet ownership recorded under this project.
-- 2026-09-20 — standalone private repository created; generic runner and Vaultwealth experiment extracted from product repositories.
+- 2026-09-20 — standalone repository created; generic runner and Vaultwealth experiment extracted from product repositories. The repository was made public after its completed-experiment review.
 
 ## Products
 
 - `agent-testing` CLI and receipt contract.
 - Vaultwealth web and iOS benchmark adapter.
-- Public, read-only Map of Browser Agent Testing for agents and authorized maintainers.
+- Public, read-only Map of Browser Agent Testing for coding agents and maintainers.
 
 ## Features (shipped)
 
