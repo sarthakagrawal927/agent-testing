@@ -3,6 +3,7 @@
 > A command-first map for coding agents comparing local web and native UI testing tools with independent verification.
 
 Repository: https://github.com/sarthakagrawal927/agent-testing
+Live map: https://map-of-agent-testing.sarthakagrawal927.workers.dev
 Access: The repository is private. Cloning requires authorized GitHub access.
 
 ## Start
@@ -33,4 +34,3 @@ No overall replacement has qualified. Adopt a candidate only after it is at leas
 
 Detailed guide: https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md
 Full report: https://github.com/sarthakagrawal927/agent-testing/blob/main/adapters/vaultwealth/runtime/REPORT.md
-
