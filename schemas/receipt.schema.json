@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/sass-maker/saas-maker/tooling/agent-testing/receipt.schema.json",
+  "$id": "https://github.com/sarthakagrawal927/agent-testing/blob/main/schemas/receipt.schema.json",
   "title": "Fleet local agent-testing benchmark receipt",
   "type": "object",
   "additionalProperties": false,

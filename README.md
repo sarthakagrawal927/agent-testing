@@ -11,6 +11,10 @@ product-owned command arrays and measures whether independent verification
 accepts the outcome. Playwright, Maestro, AXe, Jev, Stagehand, Browser Use,
 model runtimes, browsers, and simulators remain product-scoped dependencies.
 
+**Start here:** [Benchmarking an application with agent-testing](docs/GETTING_STARTED.md)
+summarizes the current results and shows how to clone the repository, run the
+smoke fixture, and add another product adapter.
+
 ## Commands
 
 ```sh
