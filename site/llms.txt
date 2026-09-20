@@ -1,0 +1,36 @@
+# The Map of Agent Testing
+
+> A command-first map for coding agents comparing local web and native UI testing tools with independent verification.
+
+Repository: https://github.com/sarthakagrawal927/agent-testing
+Live map: https://map-of-agent-testing.sarthakagrawal927.workers.dev
+Access: The repository is private. Cloning requires authorized GitHub access.
+
+## Start
+
+gh repo clone sarthakagrawal927/agent-testing
+cd agent-testing
+npm test
+
+node bin/agent-testing.mjs validate --manifest fixtures/good.manifest.json
+node bin/agent-testing.mjs run --manifest fixtures/good.manifest.json --out artifacts/quickstart
+node bin/agent-testing.mjs summarize --receipt artifacts/quickstart/receipt.json
+
+## Add a product
+
+Keep this repository beside the product. Add adapters/<your-product>/ with a strict manifest and bounded reset, readiness, workflow, and verification commands. Use a seeded non-production backend and a clean isolated product worktree.
+
+The workflow and verifier must be separate. A successful driver exit is not proof of a correct displayed value, backend state, reload or relaunch result, or visual state.
+
+## Current screening guidance
+
+- Repeat web changes: saved Playwright workflows.
+- Explore supported web behavior: Jev plus an independent verifier.
+- Replay a previously resolved semantic web action: Stagehand cache remains promising but unqualified as a replacement.
+- Repeat iOS changes: saved Maestro flows.
+- Targeted iOS inspection/action: AXe or XcodeBuildMCP, without assuming standalone reliability.
+
+No overall replacement has qualified. Adopt a candidate only after it is at least 2x faster, or uses at least 50% less model without slower execution, with no missed seeded defects and no observed reliability regression.
+
+Detailed guide: https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md
+Full report: https://github.com/sarthakagrawal927/agent-testing/blob/main/adapters/vaultwealth/runtime/REPORT.md

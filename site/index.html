@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A command-first map for agents benchmarking local web and native UI testing tools with independent verification.">
+    <meta name="theme-color" content="#f7f2e8">
+    <title>The Map of Agent Testing</title>
+    <link rel="canonical" href="https://map-of-agent-testing.sarthakagrawal927.workers.dev/">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the map</a>
+
+    <main id="main" class="page">
+      <header class="hero">
+        <p class="eyebrow">Agent-first field guide</p>
+        <h1>The Map of<br>Agent Testing</h1>
+        <p class="lede">A short route from “the driver finished” to “the product is actually correct.”</p>
+
+        <div class="current-call" aria-label="Current benchmark decision">
+          <span>Current call</span>
+          <strong>Keep Playwright and Maestro as regression baselines.</strong>
+          <p>Use adaptive tools for exploration, then verify their outcome independently. No overall replacement has qualified yet.</p>
+        </div>
+
+        <p class="access-note"><strong>Access:</strong> this map is public, but the source repository is private. Cloning requires authorized GitHub access.</p>
+      </header>
+
+      <section class="route" aria-labelledby="start-heading">
+        <div class="route-step" aria-hidden="true">01</div>
+        <div class="route-content">
+          <p class="section-label">Clone</p>
+          <h2 id="start-heading">Give the agent the runner</h2>
+          <p>Keep the shared runner beside your application. Do not copy it into the product.</p>
+          <pre><code>gh repo clone sarthakagrawal927/agent-testing
+cd agent-testing
+npm test</code></pre>
+        </div>
+      </section>
+
+      <section class="route" aria-labelledby="prove-heading">
+        <div class="route-step" aria-hidden="true">02</div>
+        <div class="route-content">
+          <p class="section-label">Prove it</p>
+          <h2 id="prove-heading">Run the built-in smoke benchmark</h2>
+          <p>The fixture demonstrates warm and cold runs, bounded phases, sanitized receipts, and a separate correctness oracle.</p>
+          <pre><code>node bin/agent-testing.mjs validate \
+  --manifest fixtures/good.manifest.json
+
+node bin/agent-testing.mjs run \
+  --manifest fixtures/good.manifest.json \
+  --out artifacts/quickstart
+
+node bin/agent-testing.mjs summarize \
+  --receipt artifacts/quickstart/receipt.json</code></pre>
+        </div>
+      </section>
+
+      <section class="route" aria-labelledby="adapt-heading">
+        <div class="route-step" aria-hidden="true">03</div>
+        <div class="route-content">
+          <p class="section-label">Adapt</p>
+          <h2 id="adapt-heading">Add one real product journey</h2>
+          <p>Create <code>adapters/&lt;your-product&gt;/</code> with a strict manifest and bounded commands for reset, readiness, workflow, and verification.</p>
+          <pre><code>adapters/your-product/
+├── README.md
+├── search.playwright.manifest.json
+├── run-search.mjs
+└── verify-search.mjs</code></pre>
+          <div class="rule">
+            <span>The one rule</span>
+            <strong>A zero exit code is not a correct product state.</strong>
+            <p>Verify displayed values, persisted backend state, reload or relaunch behavior, and selected screenshots outside the driver.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="route" aria-labelledby="compare-heading">
+        <div class="route-step" aria-hidden="true">04</div>
+        <div class="route-content">
+          <p class="section-label">Compare</p>
+          <h2 id="compare-heading">Use the tool that fits the job</h2>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Current benchmark tool map">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Job</th>
+                  <th scope="col">Use now</th>
+                  <th scope="col">Boundary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Repeat web changes</td>
+                  <td><strong>Playwright</strong></td>
+                  <td>Saved workflows remain the qualified baseline.</td>
+                </tr>
+                <tr>
+                  <td>Explore web behavior</td>
+                  <td><strong>Jev + verifier</strong></td>
+                  <td>Search worked 5/5; password login is unsupported.</td>
+                </tr>
+                <tr>
+                  <td>Replay a semantic action</td>
+                  <td><strong>Stagehand cache</strong></td>
+                  <td>Promising 4/4 screening result; not a 2× win.</td>
+                </tr>
+                <tr>
+                  <td>Repeat iOS changes</td>
+                  <td><strong>Maestro</strong></td>
+                  <td>AXe was faster in login screening but not reliable enough overall.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="evidence" aria-label="Selected screening evidence">
+            <div><span>Playwright search</span><strong>2.768 s</strong><small>5/5 verified</small></div>
+            <div><span>Stagehand cached</span><strong>2.201 s</strong><small>4/4 preliminary</small></div>
+            <div><span>Jev search</span><strong>11.101 s</strong><small>5/5 + stale fault found</small></div>
+          </div>
+          <p class="fine-print">These are Vaultwealth screening results, not universal rankings. Sample sizes are preliminary and prepared workflows are not equivalent to unfamiliar exploration tasks.</p>
+        </div>
+      </section>
+
+      <section class="route" aria-labelledby="adopt-heading">
+        <div class="route-step" aria-hidden="true">05</div>
+        <div class="route-content">
+          <p class="section-label">Adopt</p>
+          <h2 id="adopt-heading">Raise the bar only after screening</h2>
+          <p>Start with five warm runs. Promote promising candidates to 20 warm and three cold runs per journey.</p>
+          <div class="adoption-gate">
+            <strong>Adoption gate</strong>
+            <p>At least 2× faster, or 50% less model usage without slower execution—plus no missed seeded defects and no observed reliability regression.</p>
+          </div>
+          <nav class="actions" aria-label="Further reading">
+            <a class="primary" href="https://github.com/sarthakagrawal927/agent-testing">Open the private repository <span aria-hidden="true">→</span></a>
+            <a href="https://github.com/sarthakagrawal927/agent-testing/blob/main/docs/GETTING_STARTED.md">Read the full implementation guide</a>
+            <a href="/llms.txt">Agent-readable summary</a>
+          </nav>
+        </div>
+      </section>
+
+      <footer>
+        <p>Built for verified feedback, not automation theatre.</p>
+        <p>Last benchmark snapshot: 20 September 2026.</p>
+      </footer>
+    </main>
+  </body>
+</html>
