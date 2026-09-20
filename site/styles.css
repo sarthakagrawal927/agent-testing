@@ -20,9 +20,7 @@ html { background: var(--paper); }
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    linear-gradient(90deg, var(--accent) 0 7px, transparent 7px) calc(50% - 410px) 0 / 7px 100% no-repeat,
-    var(--paper);
+  background: var(--paper);
   font-size: 17px;
   line-height: 1.65;
 }
