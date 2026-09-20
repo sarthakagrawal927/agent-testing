@@ -1,0 +1,125 @@
+{
+  "$schema": "fleet.design-review.v1",
+  "version": 1,
+  "project": "agent-testing",
+  "target": "single-page public benchmark guide",
+  "surfaceMode": "persuade",
+  "mode": "overhaul",
+  "register": "product",
+  "context": {
+    "product": "PRODUCT.md",
+    "design": "DESIGN.md"
+  },
+  "direction": {
+    "references": [
+      "Preline Cover Page"
+    ],
+    "probes": [
+      {
+        "id": "field-manual",
+        "path": "artifacts/design/direction-set-ab.png"
+      },
+      {
+        "id": "benchmark-ledger",
+        "path": "artifacts/design/direction-set-ab.png"
+      },
+      {
+        "id": "terminal-map",
+        "path": "artifacts/design/direction-terminal.png"
+      }
+    ],
+    "selected": "field-manual",
+    "approval": "delegated",
+    "before": "not-applicable-new-surface",
+    "library": {
+      "strategy": "upstream-first",
+      "primary": "preline",
+      "sources": [
+        "https://preline.co/examples/html/cover-page.html"
+      ],
+      "runtime": "none",
+      "customReplacement": {
+        "used": false,
+        "authorization": "not-required",
+        "reason": ""
+      }
+    },
+    "contract": {
+      "purpose": "Help coding agents compare local web and native UI automation choices by measuring verified feedback rather than successful driver execution.",
+      "purposeSource": "PRODUCT.md and PROJECT_STATUS.md",
+      "canonicalPurpose": "Agent Testing helps coding agents and Fleet maintainers compare local UI automation choices through bounded benchmarks and independent correctness verification.",
+      "purposeAlignment": "repository-override",
+      "driftNote": "No canonical Fleet catalog record existed before this public surface; the record and Cloudflare ownership are added in the same task.",
+      "audience": "Coding agents and Fleet maintainers with access to the private runner repository.",
+      "job": "Expose the exact clone, smoke, adapter, verification, and adoption path before secondary benchmark explanation.",
+      "thesis": "A field manual, not a marketing landing page: linear, quiet, and executable in source order.",
+      "system": "Warm paper surfaces, near-black editorial headings, orange route markers, monospace commands, one reading column, and ordinary semantic links.",
+      "signature": "A numbered clone-to-adopt route whose commands form the page's primary information architecture.",
+      "risk": "The large serif title can dominate a narrow viewport; responsive sizing and a short agent-first eyebrow keep the first command path visible without horizontal overflow."
+    }
+  },
+  "evidence": {
+    "screenshots": [
+      {
+        "width": 390,
+        "path": "artifacts/design/after-390.png"
+      },
+      {
+        "width": 768,
+        "path": "artifacts/design/after-768.png"
+      },
+      {
+        "width": 1440,
+        "path": "artifacts/design/after-1440.png"
+      }
+    ],
+    "projectCheck": {
+      "command": "npm run check",
+      "status": "pass"
+    },
+    "critique": {
+      "score": 37,
+      "maximum": 40
+    },
+    "audit": {
+      "score": 18,
+      "maximum": 20
+    },
+    "unresolved": {
+      "p0": 0,
+      "p1": 0
+    },
+    "detector": {
+      "posture": "advisory",
+      "findings": [
+        "Impeccable was unavailable; manual responsive, contrast, focus, overflow, and source-order review was used."
+      ]
+    },
+    "comprehension": {
+      "status": "pass",
+      "reviewer": "fresh-context browser review",
+      "answers": {
+        "product": "A map and runner for local web and native UI-agent benchmarks.",
+        "audience": "Coding agents and maintainers with repository access.",
+        "value": "Faster feedback that is independently verified as correct.",
+        "mechanism": "Strict manifests run bounded workflows and separate product oracles before summarizing speed, cost, and reliability.",
+        "proof": "The page names the current Vaultwealth screening decisions and three dated measured results with limitations.",
+        "nextAction": "Clone the private repository, run its smoke fixture, then add one product adapter."
+      },
+      "purposeScore": {
+        "product": 25,
+        "audience": 15,
+        "value": 15,
+        "mechanism": 15,
+        "proof": 14,
+        "nextAction": 14,
+        "total": 98
+      },
+      "mismatches": []
+    }
+  },
+  "ownerFeedback": {
+    "decision": "delegated",
+    "note": "The owner delegated the choice with 'anything simple would do'; Field Manual was selected as the simplest agent-first direction."
+  }
+}

@@ -3,9 +3,17 @@ coverage/
 .DS_Store
 .env*
 *.log
+.wrangler/
 
 # Benchmark runtime outputs and isolated third-party installs.
-artifacts/
+artifacts/*
+!artifacts/design/
+artifacts/design/*
+!artifacts/design/after-390.png
+!artifacts/design/after-768.png
+!artifacts/design/after-1440.png
+!artifacts/design/direction-set-ab.png
+!artifacts/design/direction-terminal.png
 adapters/*/runtime/artifacts/
 adapters/*/runtime/__pycache__/
 adapters/*/runtime/tools/node_modules/
