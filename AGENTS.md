@@ -8,7 +8,9 @@ support tool, not a product application.
 - Stack: dependency-free Node.js ESM core; product adapters may declare isolated, pinned experiment-only tools.
 - Test: `npm test`
 - Full check: `npm run check`
-- No deploy target.
+- Deploy: `npm run deploy` publishes the existing `map-of-agent-testing`
+  Cloudflare Worker at `browser-agents.sarthakagrawal.dev`; the workers.dev
+  fallback remains enabled.
 
 ## Boundaries
 

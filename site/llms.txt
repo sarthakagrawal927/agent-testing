@@ -3,7 +3,7 @@
 > A command-first map for coding agents comparing local web and native UI testing tools with independent verification.
 
 Repository: https://github.com/sarthakagrawal927/agent-testing
-Live map: https://map-of-agent-testing.sarthakagrawal927.workers.dev
+Live map: https://browser-agents.sarthakagrawal.dev
 Access: The repository is private. Cloning requires authorized GitHub access.
 
 ## Start
