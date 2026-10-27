@@ -15,10 +15,11 @@ model runtimes, browsers, and simulators remain product-scoped dependencies.
 summarizes the current results and shows how to clone the repository, run the
 smoke fixture, and add another product adapter.
 
-The public, agent-first summary is served from
-[The Map of Browser Agent Testing](https://browser-agents.sarthakagrawal.dev)
-by Cloudflare Workers Static Assets. Use `pnpm run site:dev` for a local preview
-and `pnpm run deploy` for the configured `map-of-agent-testing` Worker.
+The write-up and public evidence snapshots now live in
+[SaaS Maker Learnings](https://sassmaker.com/learnings/browser-agent-testing).
+The standalone site and its Cloudflare Worker are retired. The `site/` directory
+and historical deployment scripts remain retained source; SaaS Maker owns the
+published article.
 
 ## Commands
 
