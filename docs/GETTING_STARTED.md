@@ -1,5 +1,9 @@
 # Benchmarking an application with agent-testing
 
+The published article and evidence snapshots have moved to
+[SaaS Maker Learnings](https://sassmaker.com/learnings/browser-agent-testing).
+This retained guide documents how to reproduce the original experiment.
+
 This repository helps a team compare UI-testing drivers and agent strategies
 without confusing fast clicks with a correct result. It runs bounded commands,
 records warm and cold timing, and requires a separate product-specific verifier
