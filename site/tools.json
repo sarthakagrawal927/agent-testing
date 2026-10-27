@@ -2,6 +2,7 @@
   "title": "Map of Browser Agent Testing tool catalogue",
   "status": "completed-experiment",
   "catalogue_reviewed": "2026-09-20",
+  "catalogue_updated": "2026-10-27",
   "last_experiment": "2026-09-20",
   "scope": "Maintained and materially relevant tools for local browser-agent and iOS-agent testing, grouped by job. Each entry has dated execution evidence or an explicit applicability boundary.",
   "evidence_states": {
@@ -35,6 +36,7 @@
 
     {"id":"jev","name":"Jev Ultrafast","category":"Adaptive browser agents","evidence":"benchmarked","cost":"Cheap paid selector + local text model","version":"0.1.0 @ 1231850a0bf1a0c0341fe408ef1668dbbfdfac46","url":"https://github.com/browser-use/jev-ultrafast","note":"Authenticated search passed 5/5; password fields are excluded upstream."},
     {"id":"stagehand","name":"Stagehand","category":"Adaptive browser agents","evidence":"screened","cost":"Free code / model-dependent","version":"3.4.0","url":"https://github.com/browserbase/stagehand","note":"Cached replay reached 2.201 s median, 4/4; authoring took 25.544 s."},
+    {"id":"pomerado","name":"Pomerado","category":"Adaptive browser agents","evidence":"researched-only","cost":"MIT core / paid model for authoring","version":null,"disposition":"Website-to-MCP integration authoring","reviewed":"2026-10-27","url":"https://github.com/Pomerado/pomerado","note":"Generates source-code integrations from website tasks and serves them through MCP. Authoring uses OpenAI models; generated integrations run without model calls. Relevant to reusable workflow execution, but not an independent correctness oracle. No local runtime or speed result; review input coverage, persisted outcomes and site-change failures separately."},
     {"id":"browser-use","name":"Browser Use","category":"Adaptive browser agents","evidence":"screened","cost":"Free code / model-dependent","version":"0.13.10","url":"https://github.com/browser-use/browser-use","note":"Worked with local Bonsai but passed 4/5 at 90.730 s among successes."},
     {"id":"chrome-devtools-mcp","name":"Chrome DevTools MCP","category":"Adaptive browser agents","evidence":"screened","cost":"Free / local","version":"1.9.0","url":"https://github.com/ChromeDevTools/chrome-devtools-mcp","note":"Fast diagnostic companion; not a journey executor."},
     {"id":"playwright-mcp","name":"Playwright MCP","category":"Adaptive browser agents","evidence":"researched-only","cost":"Free / local","version":"0.0.82 package inspected","url":"https://github.com/microsoft/playwright-mcp","note":"Pinned locally; an agent transport over Playwright, not a saved-executor speed replacement."},

@@ -13,8 +13,9 @@ Access: The source repository is public and can be cloned without authorization.
 
 Last experiment: 2026-09-20
 Catalogue reviewed: 2026-09-20
+Latest catalogue addition: 2026-10-27 (Pomerado source review; other entries retain their earlier evidence).
 Status: completed experiment; retained without an active expansion roadmap.
-Coverage: 79 tools in seven categories. Eleven tools were repeatedly benchmarked, ten received bounded screens, four have dated setup blockers, and the remaining source-reviewed entries have explicit scope or fit boundaries.
+Coverage: 80 tools in seven categories. Eleven tools were repeatedly benchmarked, ten received bounded screens, four have dated setup blockers, and 55 source-reviewed entries have explicit scope or fit boundaries.
 Quantitative matrix: 26 measured web/iOS journey arms with 118 verified completions across 129 attempts, plus seven readiness, diagnostic and local-model probes. Five seeded defect types. Estimated accepted paid API spend across the Jev evidence: $0.00479976.
 
 ## Start
@@ -35,6 +36,7 @@ The workflow and verifier must be separate. A successful driver exit is not proo
 
 ## Current screening guidance
 
+- Generate reusable website integrations: Pomerado (https://github.com/Pomerado/pomerado), source-reviewed only. Model-assisted authoring produces source code served through MCP; repeat execution makes no model calls. Measure authoring and replay separately and retain an independent application-state verifier. No local runtime or speed claim.
 - Repeat web changes: saved Playwright workflows.
 - Compare deterministic web drivers: Puppeteer was the fastest added screen at 2.081 s median, but did not meet the 2x adoption gate; Selenium, WebdriverIO, Nightwatch and Taiko also completed 5/5 clean runs and detected stale search.
 - Explore supported web behavior: Jev plus an independent verifier.

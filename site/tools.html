@@ -30,12 +30,13 @@
       
       <header class="plain-header">
         <p class="eyebrow">Completed experiment · tool catalogue</p>
-        <h1>79 tools, each with a verdict.</h1>
+        <h1>80 tools, each with a verdict.</h1>
         <p class="lede">A dated map of practical browser-agent and iOS-agent testing choices. Every row has either local execution evidence or a concrete fit boundary; there are no placeholder “not run” rows.</p>
-        <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>20 September 2026</dd></div><div><dt>Last experiment</dt><dd>20 September 2026</dd></div></dl>
+        <dl class="dates"><div><dt>Catalogue reviewed</dt><dd>20 September 2026</dd></div><div><dt>Latest addition</dt><dd>27 October 2026</dd></div><div><dt>Last experiment</dt><dd>20 September 2026</dd></div></dl>
         <p class="fine-print">Coverage is exhaustive within the seven named categories as of the review date, using maintained official projects and materially relevant reference tools. It is a dated map, not a claim that every testing product in existence belongs here.</p>
       </header>
       <section class="legend-block" aria-labelledby="evidence-key"><h2 id="evidence-key">Evidence key</h2><dl><div><dt><span class="status status-benchmarked">benchmarked</span></dt><dd>Repeated locally against the shared Vaultwealth journeys or faults.</dd></div><div><dt><span class="status status-screened">screened</span></dt><dd>A bounded local probe was completed, but the tool was not fully qualified.</dd></div><div><dt><span class="status status-setup-blocked">setup-blocked</span></dt><dd>A dated setup or run was attempted, but a named prerequisite or bounded failure prevented a fair result.</dd></div><div><dt><span class="status status-researched-only">source reviewed</span></dt><dd>Official sources were reviewed and a concrete fit boundary was recorded; no runtime ranking is claimed.</dd></div></dl></section>
+      <section class="plain-callout" aria-labelledby="generated-integrations"><h2 id="generated-integrations">When the agent builds a reusable tool</h2><p>Website-to-API and MCP generators belong on this map too. <a href="#pomerado">Pomerado</a> explores a website task and generates a reusable integration. Its documentation separates model-assisted authoring from execution without model calls.</p><p>Compare authoring cost and repeat execution separately, then verify the resulting application state independently. A schema-valid tool response does not prove a saved change, correct filtering or resilience to a changed website. Pomerado was source-reviewed on 27 October 2026; it has no local benchmark result here.</p><p class="fine-print">Sources: <a href="https://github.com/Pomerado/pomerado">Pomerado repository</a> · <a href="https://github.com/Pomerado/pomerado/blob/main/docs/how-it-works.md">Architecture and runtime</a>. The broader catalogue review and historical experiment dates remain unchanged.</p></section>
       
       <section class="catalog-section" aria-labelledby="saved-web-automation">
         <h2 id="saved-web-automation">Saved web automation <small>12</small></h2>
@@ -132,7 +133,7 @@
         </div>
       </section>
       <section class="catalog-section" aria-labelledby="adaptive-browser-agents">
-        <h2 id="adaptive-browser-agents">Adaptive browser agents <small>22</small></h2>
+        <h2 id="adaptive-browser-agents">Adaptive browser agents <small>23</small></h2>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Adaptive browser agents tools">
           <table class="catalog-table">
             <thead><tr><th>Tool</th><th>Evidence</th><th>Cost</th><th>Version or boundary</th><th>What we know</th></tr></thead>
@@ -150,6 +151,13 @@
                 <td>Free code / model-dependent</td>
                 <td class="mono-cell">3.4.0</td>
                 <td>Cached replay reached 2.201 s median, 4/4; authoring took 25.544 s.</td>
+              </tr>
+              <tr id="pomerado">
+                <td><a href="https://github.com/Pomerado/pomerado"><strong>Pomerado</strong></a></td>
+                <td><span class="status status-researched-only">source reviewed</span></td>
+                <td>MIT core / paid model for authoring</td>
+                <td class="mono-cell">Website-to-MCP integration authoring</td>
+                <td>Generates source-code integrations from website tasks and serves them through MCP. Authoring uses OpenAI models; generated integrations run without model calls. Relevant to reusable workflow execution, but not an independent correctness oracle. No local runtime or speed result; review input coverage, persisted outcomes and site-change failures separately.</td>
               </tr>
               <tr id="browser-use">
                 <td><a href="https://github.com/browser-use/browser-use"><strong>Browser Use</strong></a></td>
