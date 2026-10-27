@@ -39,7 +39,7 @@ test('public map ships agent and missing-route surfaces', async () => {
   assert.match(llms, /The workflow and verifier must be separate/);
   assert.match(missing, /Route not found/);
   assert.match(headers, /Content-Security-Policy/);
-  assert.match(toolsPage, /79 tools, each with a verdict/);
+  assert.match(toolsPage, /80 tools, each with a verdict/);
   assert.doesNotMatch(toolsPage, /Not run here/);
   assert.match(experimentsPage, /What was actually run/);
   assert.match(experimentsPage, /Measured journey matrix/);
